@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin or private sections
+# Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://goodwill-foundation.com/sitemap.xml
