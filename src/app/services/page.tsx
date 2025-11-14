@@ -1,11 +1,9 @@
-'use client'
+ 'use client'
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import WhatsAppButton from '@/components/WhatsAppButton'
+import { useI18n } from '@/contexts/I18nContext'
 import { 
   FaCog, FaBroom, FaTools, FaWrench, FaBuilding, FaShieldAlt,
   FaCheckCircle, FaClipboardList, FaHardHat, FaPaintRoller,
@@ -28,6 +26,7 @@ const staggerContainer = {
 }
 
 export default function Services() {
+  const { t } = useI18n()
   const [headerRef, headerInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [servicesRef, servicesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [detailsRef, detailsInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -35,39 +34,39 @@ export default function Services() {
   const mainServices = [
     {
       icon: <FaCog size={50} />,
-      title: 'خدمات التشغيل',
-      description: 'نوفر حلول تشغيل متكاملة للمنشآت التجارية والسكنية مع فريق عمل مدرب ومؤهل',
+      title: t.services.operation.title,
+      description: t.services.operation.description,
       features: [
-        'إدارة المرافق والمنشآت',
-        'تشغيل الأنظمة الميكانيكية',
-        'إدارة الطاقة والمرافق',
-        'خدمات الاستقبال والأمن'
+        t.services.operation.features.feature1,
+        t.services.operation.features.feature2,
+        t.services.operation.features.feature3,
+        t.services.operation.features.feature4
       ],
       image: '/imgs/Service1.jpg',
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: <FaTools size={50} />,
-      title: 'الصيانة الشاملة',
-      description: 'صيانة دورية ووقائية وإصلاحية لجميع الأنظمة والمعدات بأعلى معايير الجودة',
+      title: t.services.maintenance.title,
+      description: t.services.maintenance.description,
       features: [
-        'الصيانة الوقائية المجدولة',
-        'الصيانة الإصلاحية الطارئة',
-        'صيانة أنظمة التكييف والتبريد',
-        'صيانة الأنظمة الكهربائية'
+        t.services.maintenance.features.feature1,
+        t.services.maintenance.features.feature2,
+        t.services.maintenance.features.feature3,
+        t.services.maintenance.features.feature4
       ],
       image: '/imgs/Service2.jpg',
       color: 'from-primary-500 to-primary-600'
     },
     {
       icon: <FaBroom size={50} />,
-      title: 'خدمات النظافة',
-      description: 'حلول نظافة احترافية شاملة للمنشآت بأحدث المعدات والمواد الآمنة',
+      title: t.services.cleaning.title,
+      description: t.services.cleaning.description,
       features: [
-        'التنظيف اليومي والدوري',
-        'تنظيف الواجهات والزجاج',
-        'التعقيم والتطهير',
-        'تنظيف السجاد والموكيت'
+        t.services.cleaning.features.feature1,
+        t.services.cleaning.features.feature2,
+        t.services.cleaning.features.feature3,
+        t.services.cleaning.features.feature4
       ],
       image: '/imgs/Service3.jpg',
       color: 'from-green-500 to-green-600'
@@ -77,33 +76,33 @@ export default function Services() {
   const additionalServices = [
     {
       icon: <FaWrench size={30} />,
-      title: 'أعمال السباكة',
-      description: 'صيانة وإصلاح جميع أنظمة السباكة والصرف الصحي'
+      title: t.services.additional.plumbing_title,
+      description: t.services.additional.plumbing_desc
     },
     {
       icon: <FaPaintRoller size={30} />,
-      title: 'أعمال الدهانات',
-      description: 'دهانات داخلية وخارجية بأعلى جودة'
+      title: t.services.additional.painting_title,
+      description: t.services.additional.painting_desc
     },
     {
       icon: <FaLightbulb size={30} />,
-      title: 'الأعمال الكهربائية',
-      description: 'صيانة وتركيب الأنظمة الكهربائية'
+      title: t.services.additional.electrical_title,
+      description: t.services.additional.electrical_desc
     },
     {
       icon: <FaSnowflake size={30} />,
-      title: 'صيانة التكييف',
-      description: 'صيانة وتركيب أجهزة التكييف والتبريد'
+      title: t.services.additional.ac_title,
+      description: t.services.additional.ac_desc
     },
     {
       icon: <FaHardHat size={30} />,
-      title: 'أعمال البناء',
-      description: 'التشطيبات والترميمات الإنشائية'
+      title: t.services.additional.construction_title,
+      description: t.services.additional.construction_desc
     },
     {
       icon: <FaBuilding size={30} />,
-      title: 'إدارة المباني',
-      description: 'إدارة شاملة للمباني والمرافق'
+      title: t.services.additional.building_management_title,
+      description: t.services.additional.building_management_desc
     }
   ]
 
@@ -127,9 +126,6 @@ export default function Services() {
 
   return (
     <>
-      <Navbar />
-      <WhatsAppButton />
-
       {/* Header Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -157,7 +153,7 @@ export default function Services() {
       </section>
 
       {/* Main Services Section */}
-      <section ref={servicesRef} className="py-20 bg-white">
+      <section ref={servicesRef} className="py-20 bg-white dark:bg-gray-800">
         <motion.div
           initial="hidden"
           animate={servicesInView ? "visible" : "hidden"}
@@ -189,11 +185,11 @@ export default function Services() {
                     {service.icon}
                   </div>
                   
-                  <h2 className="text-4xl font-bold text-gray-800 mb-4">
+                  <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
                     {service.title}
                   </h2>
                   
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-lg text-gray-600 dark:text-gray-100 mb-6 leading-relaxed">
                     {service.description}
                   </p>
 
@@ -201,7 +197,7 @@ export default function Services() {
                     {service.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center space-x-3 space-x-reverse">
                         <FaCheckCircle className="text-primary-500 flex-shrink-0" size={20} />
-                        <span className="text-gray-700 text-lg">{feature}</span>
+                        <span className="text-gray-700 dark:text-gray-100 text-lg">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -213,7 +209,7 @@ export default function Services() {
       </section>
 
       {/* Additional Services */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -222,9 +218,9 @@ export default function Services() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="section-title">خدمات إضافية</h2>
+            <h2 className="section-title">{t.services.additional_services_title}</h2>
             <p className="section-subtitle">
-              مجموعة واسعة من الخدمات التكميلية لتلبية جميع احتياجاتكم
+              {t.services.additional_services_subtitle}
             </p>
           </motion.div>
 
@@ -241,10 +237,10 @@ export default function Services() {
                 <div className="text-primary-500 mb-4 flex justify-center transform group-hover:scale-110 transition-transform">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-100">
                   {service.description}
                 </p>
               </motion.div>
@@ -254,7 +250,7 @@ export default function Services() {
       </section>
 
       {/* Why Choose Us */}
-      <section ref={detailsRef} className="py-20 bg-white">
+      <section ref={detailsRef} className="py-20 bg-white dark:bg-gray-800">
         <motion.div
           initial="hidden"
           animate={detailsInView ? "visible" : "hidden"}
@@ -262,9 +258,9 @@ export default function Services() {
           className="container-custom"
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="section-title">لماذا تختارنا؟</h2>
+            <h2 className="section-title">{t.services.why_choose_us_title}</h2>
             <p className="section-subtitle">
-              نتميز بمجموعة من المزايا التي تجعلنا الخيار الأمثل
+              {t.services.why_choose_us_subtitle}
             </p>
           </motion.div>
 
@@ -278,10 +274,10 @@ export default function Services() {
                 <div className="text-primary-500 mb-6 flex justify-center">
                   {item.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-100 leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
@@ -316,8 +312,6 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

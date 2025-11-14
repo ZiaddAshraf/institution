@@ -3,9 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import WhatsAppButton from '@/components/WhatsAppButton'
+import { useI18n } from '@/contexts/I18nContext'
 import { FaCog, FaBroom, FaTools, FaCheckCircle, FaStar, FaQuoteLeft } from 'react-icons/fa'
 
 const fadeInUp = {
@@ -24,6 +22,7 @@ const staggerContainer = {
 }
 
 export default function Home() {
+  const { t } = useI18n()
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [servicesRef, servicesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -33,57 +32,54 @@ export default function Home() {
   const services = [
     {
       icon: <FaCog size={40} />,
-      title: 'خدمات التشغيل',
-      description: 'نوفر خدمات التشغيل المتكاملة للمنشآت بكفاءة عالية واحترافية',
+      title: t.services.operation.title,
+      description: t.services.operation.description,
       image: '/imgs/Service1.jpg'
     },
     {
       icon: <FaTools size={40} />,
-      title: 'الصيانة الشاملة',
-      description: 'صيانة دورية ووقائية لجميع الأنظمة والمعدات بأعلى المعايير',
+      title: t.services.maintenance.title,
+      description: t.services.maintenance.description,
       image: '/imgs/Service2.jpg'
     },
     {
       icon: <FaBroom size={40} />,
-      title: 'خدمات النظافة',
-      description: 'حلول نظافة شاملة للمنشآت التجارية والسكنية بفريق متخصص',
+      title: t.services.cleaning.title,
+      description: t.services.cleaning.description,
       image: '/imgs/Service3.jpg'
     }
   ]
 
   const stats = [
-    { number: '500+', label: 'عميل راضٍ' },
-    { number: '1000+', label: 'مشروع منجز' },
-    { number: '15+', label: 'سنة خبرة' },
-    { number: '100+', label: 'فريق محترف' }
+    { number: '500+', label: t.stats.satisfied_clients },
+    { number: '1000+', label: t.stats.completed_projects },
+    { number: '15+', label: t.stats.years_experience },
+    { number: '100+', label: t.stats.professional_team }
   ]
 
   const testimonials = [
     {
-      name: 'محمد العتيبي',
-      position: 'مدير منشأة تجارية',
-      text: 'خدمة ممتازة واحترافية عالية، فريق العمل متعاون ومتفاني في تقديم أفضل الخدمات',
+      name: t.testimonials.client1.name,
+      position: t.testimonials.client1.position,
+      text: t.testimonials.client1.text,
       rating: 5
     },
     {
-      name: 'أحمد السعيد',
-      position: 'مالك عقارات',
-      text: 'نتعامل معهم منذ سنوات، الجودة والالتزام بالمواعيد من أهم ما يميزهم',
+      name: t.testimonials.client2.name,
+      position: t.testimonials.client2.position,
+      text: t.testimonials.client2.text,
       rating: 5
     },
     {
-      name: 'فهد الدوسري',
-      position: 'مدير مجمع سكني',
-      text: 'أسعار تنافسية وخدمة متميزة، ننصح بهم بشدة',
+      name: t.testimonials.client3.name,
+      position: t.testimonials.client3.position,
+      text: t.testimonials.client3.text,
       rating: 5
     }
   ]
 
   return (
     <>
-      <Navbar />
-      <WhatsAppButton />
-
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
@@ -108,15 +104,15 @@ export default function Home() {
             variants={fadeInUp}
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
-            مؤسسة طريق الخير
-            <span className="block text-primary-400 mt-2">للتشغيل والصيانة</span>
+            {t.hero.title}
+            <span className="block text-primary-400 mt-2">{t.hero.subtitle}</span>
           </motion.h1>
           
           <motion.p
             variants={fadeInUp}
             className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            نقدم حلولاً متكاملة في التشغيل والصيانة والنظافة بأعلى معايير الجودة والاحترافية
+            {t.hero.description}
           </motion.p>
 
           <motion.div
@@ -124,10 +120,10 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <Link href="/services" className="btn-primary">
-              استكشف خدماتنا
+              {t.hero.explore_services}
             </Link>
             <Link href="/contact" className="btn-outline">
-              اتصل بنا
+              {t.hero.contact_us}
             </Link>
           </motion.div>
         </motion.div>
@@ -146,7 +142,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section ref={aboutRef} className="py-20 bg-gray-50">
+      <section ref={aboutRef} className="py-20 bg-gray-50 dark:bg-gray-900">
         <motion.div
           initial="hidden"
           animate={aboutInView ? "visible" : "hidden"}
@@ -154,9 +150,9 @@ export default function Home() {
           className="container-custom"
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="section-title">من نحن</h2>
+            <h2 className="section-title">{t.home.about_section_title}</h2>
             <p className="section-subtitle max-w-3xl mx-auto">
-              مؤسسة سعودية رائدة في مجال التشغيل والصيانة والنظافة
+              {t.home.about_section_subtitle}
             </p>
           </motion.div>
 
@@ -170,31 +166,27 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="space-y-6">
-              <h3 className="text-3xl font-bold text-gray-800 mb-6">
-                شريكك الموثوق في الخدمات المتكاملة
+              <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">
+                {t.home.trusted_partner}
               </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                نحن في مؤسسة طريق الخير نفخر بتقديم خدمات متميزة في مجالات التشغيل والصيانة والنظافة.
-                مع خبرة تمتد لأكثر من 15 عاماً، أصبحنا الخيار الأول للعديد من المنشآت التجارية والسكنية
-                في المملكة العربية السعودية.
+              <p className="text-lg text-gray-600 dark:text-gray-100 leading-relaxed">
+                {t.home.about_description}
               </p>
 
               <div className="space-y-4">
                 {[
-                  'فريق عمل مؤهل ومدرب على أعلى مستوى',
-                  'استخدام أحدث التقنيات والمعدات',
-                  'التزام تام بمعايير الجودة والسلامة',
-                  'خدمة عملاء متميزة على مدار الساعة'
+                  t.home.features.feature1,
+                  t.home.features.feature2,
+                  t.home.features.feature3,
+                  t.home.features.feature4
                 ].map((item, index) => (
                   <div key={index} className="flex items-start space-x-3 space-x-reverse">
                     <FaCheckCircle className="text-primary-500 mt-1 flex-shrink-0" size={20} />
-                    <span className="text-gray-700 text-lg">{item}</span>
+                    <span className="text-gray-700 dark:text-gray-100 text-lg">{item}</span>
                   </div>
                 ))}
-              </div>
-
-              <Link href="/about" className="btn-primary inline-block mt-8">
-                اعرف المزيد عنا
+              </div>              <Link href="/about" className="btn-primary inline-block mt-8">
+                {t.common.learn_more}
               </Link>
             </motion.div>
           </div>
@@ -202,7 +194,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="py-20 bg-white">
+      <section ref={servicesRef} className="py-20 bg-white dark:bg-gray-800">
         <motion.div
           initial="hidden"
           animate={servicesInView ? "visible" : "hidden"}
@@ -210,9 +202,9 @@ export default function Home() {
           className="container-custom"
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="section-title">خدماتنا</h2>
+            <h2 className="section-title">{t.services.title}</h2>
             <p className="section-subtitle max-w-3xl mx-auto">
-              نقدم مجموعة شاملة من الخدمات المتخصصة لتلبية احتياجاتكم
+              {t.services.subtitle}
             </p>
           </motion.div>
 
@@ -235,11 +227,11 @@ export default function Home() {
                   {service.icon}
                 </div>
                 
-                <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">
                   {service.title}
                 </h3>
                 
-                <p className="text-gray-600 text-center leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-100 text-center leading-relaxed">
                   {service.description}
                 </p>
               </motion.div>
@@ -280,7 +272,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section ref={testimonialsRef} className="py-20 bg-gray-50">
+      <section ref={testimonialsRef} className="py-20 bg-gray-50 dark:bg-gray-900">
         <motion.div
           initial="hidden"
           animate={testimonialsInView ? "visible" : "hidden"}
@@ -309,13 +301,13 @@ export default function Home() {
                   ))}
                 </div>
 
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-100 mb-6 leading-relaxed">
                   "{testimonial.text}"
                 </p>
 
                 <div className="border-t pt-4">
-                  <h4 className="font-bold text-gray-800">{testimonial.name}</h4>
-                  <p className="text-gray-500 text-sm">{testimonial.position}</p>
+                  <h4 className="font-bold text-gray-800 dark:text-white">{testimonial.name}</h4>
+                  <p className="text-gray-500 dark:text-gray-200 text-sm">{testimonial.position}</p>
                 </div>
               </motion.div>
             ))}
@@ -349,8 +341,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

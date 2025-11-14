@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
+import ThemeWrapper from '@/components/ThemeWrapper'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+import WhatsAppButton from '@/components/WhatsAppButton'
 
 export const metadata: Metadata = {
   title: 'مؤسسة طريق الخير للتشغيل والصيانة | Goodwill Foundation',
@@ -54,10 +58,31 @@ export default function RootLayout({
         <link rel="icon" href="/imgs/logo.jpg" type="image/jpeg" />
         <link rel="apple-touch-icon" href="/imgs/logo.jpg" />
         <meta name="theme-color" content="#00a6a6" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const savedTheme = localStorage.getItem('theme');
+                  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <StructuredData />
       </head>
       <body className="antialiased">
-        {children}
+        <ThemeWrapper>
+          <Navbar />
+          {children}
+          <Footer />
+          <WhatsAppButton />
+        </ThemeWrapper>
       </body>
     </html>
   )

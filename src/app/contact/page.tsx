@@ -3,9 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import WhatsAppButton from '@/components/WhatsAppButton'
+import { useI18n } from '@/contexts/I18nContext'
 import { 
   FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, 
   FaInstagram, FaFacebook, FaTwitter, FaClock 
@@ -27,6 +25,7 @@ const staggerContainer = {
 }
 
 export default function Contact() {
+  const { t } = useI18n()
   const [headerRef, headerInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [formRef, formInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   
@@ -68,43 +67,43 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: <FaPhone size={30} />,
-      title: 'الهاتف',
+      title: t.contact.phone,
       info: '+966 XX XXX XXXX',
       link: 'tel:+966XXXXXXXXX',
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: <FaWhatsapp size={30} />,
-      title: 'واتساب',
+      title: t.nav.whatsapp,
       info: '+966 XX XXX XXXX',
       link: 'https://wa.me/966XXXXXXXXX',
       color: 'from-green-500 to-green-600'
     },
     {
       icon: <FaEnvelope size={30} />,
-      title: 'البريد الإلكتروني',
+      title: t.contact.email,
       info: 'info@goodwill.sa',
       link: 'mailto:info@goodwill.sa',
       color: 'from-red-500 to-red-600'
     },
     {
       icon: <FaMapMarkerAlt size={30} />,
-      title: 'العنوان',
-      info: 'المملكة العربية السعودية',
+      title: t.contact.address,
+      info: t.footer.location || 'المملكة العربية السعودية',
       link: '#',
       color: 'from-purple-500 to-purple-600'
     }
   ]
 
   const workingHours = [
-    { day: 'السبت - الخميس', hours: '8:00 صباحاً - 6:00 مساءً' },
-    { day: 'الجمعة', hours: 'مغلق' }
+    { day: t.contact.working_days, hours: t.contact.working_time },
+    { day: t.contact.friday, hours: t.contact.closed }
   ]
 
   const socialMedia = [
     {
       icon: <FaInstagram size={24} />,
-      name: 'Instagram',
+  name: 'Instagram',
       link: 'https://instagram.com',
       color: 'hover:bg-pink-600'
     },
@@ -130,9 +129,6 @@ export default function Contact() {
 
   return (
     <>
-      <Navbar />
-      <WhatsAppButton />
-
       {/* Header Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -151,16 +147,16 @@ export default function Contact() {
           className="container-custom relative z-10"
         >
           <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl font-bold mb-6 text-center">
-            اتصل بنا
+            {t.contact.title}
           </motion.h1>
           <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-center max-w-3xl mx-auto">
-            نحن هنا للإجابة على استفساراتكم وتقديم أفضل الخدمات
+            {t.contact.subtitle}
           </motion.p>
         </motion.div>
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {contactInfo.map((item, index) => (
@@ -200,7 +196,7 @@ export default function Contact() {
             >
               <motion.div variants={fadeInUp} className="card p-8">
                 <h2 className="text-3xl font-bold text-gray-800 mb-6">
-                  أرسل لنا رسالة
+                  {t.contact.form_title}
                 </h2>
 
                 {submitStatus === 'success' && (
@@ -219,8 +215,8 @@ export default function Contact() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
-                        الاسم الكامل *
-                      </label>
+                          {t.contact.name_label} *
+                        </label>
                       <input
                         type="text"
                         id="name"
@@ -229,13 +225,13 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                        placeholder="أدخل اسمك الكامل"
+                        placeholder={t.contact.name_placeholder}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="phone" className="block text-gray-700 font-semibold mb-2">
-                        رقم الجوال *
+                        {t.contact.phone_label} *
                       </label>
                       <input
                         type="tel"
@@ -245,14 +241,14 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                        placeholder="05XXXXXXXX"
+                        placeholder={t.contact.phone_placeholder}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">
-                      البريد الإلكتروني *
+                      {t.contact.email_label} *
                     </label>
                     <input
                       type="email"
@@ -262,13 +258,13 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                      placeholder="example@email.com"
+                      placeholder={t.contact.email_placeholder}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="service" className="block text-gray-700 font-semibold mb-2">
-                      الخدمة المطلوبة
+                      {t.contact.service_label}
                     </label>
                     <select
                       id="service"
@@ -277,17 +273,17 @@ export default function Contact() {
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                     >
-                      <option value="">اختر الخدمة</option>
-                      <option value="operation">خدمات التشغيل</option>
-                      <option value="maintenance">الصيانة الشاملة</option>
-                      <option value="cleaning">خدمات النظافة</option>
-                      <option value="other">أخرى</option>
+                      <option value="">{t.contact.service_placeholder}</option>
+                      <option value="operation">{t.contact.service_operation}</option>
+                      <option value="maintenance">{t.contact.service_maintenance}</option>
+                      <option value="cleaning">{t.contact.service_cleaning}</option>
+                      <option value="other">{t.contact.service_other}</option>
                     </select>
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">
-                      الرسالة *
+                      <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">
+                      {t.contact.message_label} *
                     </label>
                     <textarea
                       id="message"
@@ -297,7 +293,7 @@ export default function Contact() {
                       required
                       rows={5}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
-                      placeholder="اكتب رسالتك هنا..."
+                      placeholder={t.contact.message_placeholder}
                     ></textarea>
                   </div>
 
@@ -305,7 +301,7 @@ export default function Contact() {
                     type="submit"
                     className="btn-primary w-full"
                   >
-                    إرسال الرسالة
+                    {t.contact.submit_button}
                   </button>
                 </form>
               </motion.div>
@@ -326,7 +322,7 @@ export default function Contact() {
                     <FaClock size={24} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800">
-                    ساعات العمل
+                    {t.contact.working_hours_title}
                   </h3>
                 </div>
                 <div className="space-y-3">
@@ -342,7 +338,7 @@ export default function Contact() {
               {/* Social Media */}
               <div className="card p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  تابعنا على
+                  {t.contact.follow_us}
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
                   {socialMedia.map((social, index) => (
@@ -363,11 +359,11 @@ export default function Contact() {
               {/* Quick Contact */}
               <div className="card p-6 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
                 <h3 className="text-xl font-bold mb-4">
-                  تواصل سريع
-                </h3>
-                <p className="mb-4">
-                  للحصول على رد فوري، يمكنك التواصل معنا عبر واتساب
-                </p>
+                    {t.contact.quick_contact_title}
+                  </h3>
+                  <p className="mb-4">
+                    {t.contact.quick_contact_desc}
+                  </p>
                 <a
                   href="https://wa.me/966XXXXXXXXX?text=مرحباً، أود الاستفسار عن خدماتكم"
                   target="_blank"
@@ -376,7 +372,7 @@ export default function Contact() {
                 >
                   <div className="flex items-center justify-center space-x-2 space-x-reverse">
                     <FaWhatsapp size={20} />
-                    <span>تواصل عبر واتساب</span>
+                      <span>{t.contact.whatsapp_message}</span>
                   </div>
                 </a>
               </div>
@@ -386,7 +382,7 @@ export default function Contact() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -411,8 +407,6 @@ export default function Contact() {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

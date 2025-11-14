@@ -1,11 +1,9 @@
-'use client'
+ 'use client'
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import WhatsAppButton from '@/components/WhatsAppButton'
+import { useI18n } from '@/contexts/I18nContext'
 import { FaEye, FaBullseye, FaAward, FaUsers, FaCheckCircle } from 'react-icons/fa'
 
 const fadeInUp = {
@@ -24,6 +22,7 @@ const staggerContainer = {
 }
 
 export default function About() {
+  const { t } = useI18n()
   const [headerRef, headerInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [missionRef, missionInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [valuesRef, valuesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -32,33 +31,33 @@ export default function About() {
   const values = [
     {
       icon: <FaAward size={40} />,
-      title: 'الجودة',
-      description: 'نلتزم بأعلى معايير الجودة في كل ما نقدمه من خدمات'
+      title: t.about.values.quality_title,
+      description: t.about.values.quality_desc
     },
     {
       icon: <FaUsers size={40} />,
-      title: 'الاحترافية',
-      description: 'فريق عمل محترف ومدرب على أحدث الأساليب والتقنيات'
+      title: t.about.values.professionalism_title,
+      description: t.about.values.professionalism_desc
     },
     {
       icon: <FaCheckCircle size={40} />,
-      title: 'الالتزام',
-      description: 'نلتزم بمواعيدنا ونحرص على إتمام المشاريع في الوقت المحدد'
+      title: t.about.values.commitment_title,
+      description: t.about.values.commitment_desc
     },
     {
       icon: <FaBullseye size={40} />,
-      title: 'رضا العملاء',
-      description: 'رضا عملائنا هو هدفنا الأول ونسعى لتحقيقه دائماً'
+      title: t.about.values.satisfaction_title,
+      description: t.about.values.satisfaction_desc
     }
   ]
 
   const achievements = [
-    'أكثر من 500 عميل راضٍ عن خدماتنا',
-    'أكثر من 1000 مشروع منجز بنجاح',
-    '15 عاماً من الخبرة في المجال',
-    'فريق عمل يزيد عن 100 موظف متخصص',
-    'شهادات جودة معتمدة محلياً ودولياً',
-    'تغطية شاملة في جميع مناطق المملكة'
+    t.about.achievements.clients,
+    t.about.achievements.projects,
+    t.about.achievements.experience,
+    t.about.achievements.team,
+    t.about.achievements.certificates,
+    t.about.achievements.coverage
   ]
 
   const gallery = [
@@ -72,9 +71,6 @@ export default function About() {
 
   return (
     <>
-      <Navbar />
-      <WhatsAppButton />
-
       {/* Header Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -102,7 +98,7 @@ export default function About() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <motion.div
@@ -111,10 +107,10 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">
+              <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-6">
                 مؤسسة طريق الخير للتشغيل والصيانة
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-4">
+              <p className="text-lg text-gray-600 dark:text-gray-100 leading-relaxed mb-4">
                 تأسست مؤسسة طريق الخير للتشغيل والصيانة بهدف تقديم خدمات متميزة في مجال التشغيل والصيانة والنظافة للمنشآت التجارية والسكنية في المملكة العربية السعودية.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed mb-4">
@@ -163,7 +159,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section ref={missionRef} className="py-20 bg-gray-50">
+      <section ref={missionRef} className="py-20 bg-gray-50 dark:bg-gray-900">
         <motion.div
           initial="hidden"
           animate={missionInView ? "visible" : "hidden"}
@@ -195,7 +191,7 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section ref={valuesRef} className="py-20 bg-white">
+      <section ref={valuesRef} className="py-20 bg-white dark:bg-gray-800">
         <motion.div
           initial="hidden"
           animate={valuesInView ? "visible" : "hidden"}
@@ -203,9 +199,9 @@ export default function About() {
           className="container-custom"
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="section-title">قيمنا</h2>
+            <h2 className="section-title">{t.about.values_title}</h2>
             <p className="section-subtitle">
-              المبادئ التي تحكم عملنا وتوجه مسيرتنا
+              {t.about.values_subtitle}
             </p>
           </motion.div>
 
@@ -232,7 +228,7 @@ export default function About() {
       </section>
 
       {/* Gallery Section */}
-      <section ref={galleryRef} className="py-20 bg-gray-50">
+      <section ref={galleryRef} className="py-20 bg-gray-50 dark:bg-gray-900">
         <motion.div
           initial="hidden"
           animate={galleryInView ? "visible" : "hidden"}
@@ -240,9 +236,9 @@ export default function About() {
           className="container-custom"
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="section-title">معرض الصور</h2>
+            <h2 className="section-title">{t.about.gallery_title}</h2>
             <p className="section-subtitle">
-              لمحات من أعمالنا ومشاريعنا المنجزة
+              {t.about.gallery_subtitle}
             </p>
           </motion.div>
 
@@ -275,19 +271,17 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              هل تريد العمل معنا؟
+              {t.about.cta_title}
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              نحن دائماً في انتظار شركاء جدد وفرص للتعاون
+              {t.about.cta_description}
             </p>
             <Link href="/contact" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg inline-block">
-              تواصل معنا
+              {t.about.contact_us_btn}
             </Link>
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

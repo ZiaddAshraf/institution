@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useI18n } from '@/contexts/I18nContext'
 
 const WhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useI18n()
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -24,7 +26,7 @@ const WhatsAppButton = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.a
-          href="https://wa.me/966XXXXXXXXX?text=مرحباً، أود الاستفسار عن خدماتكم"
+          href={`https://wa.me/966XXXXXXXXX?text=${encodeURIComponent(t.contact.whatsapp_message || 'مرحباً، أود الاستفسار عن خدماتكم')}`}
           target="_blank"
           rel="noopener noreferrer"
           initial={{ scale: 0, opacity: 0 }}
@@ -41,7 +43,7 @@ const WhatsAppButton = () => {
             whileHover={{ width: 'auto', opacity: 1 }}
             className="absolute right-full mr-3 bg-green-500 px-4 py-2 rounded-lg whitespace-nowrap overflow-hidden"
           >
-            تواصل معنا
+            {t.nav.contact_us_text || 'تواصل معنا'}
           </motion.span>
         </motion.a>
       )}

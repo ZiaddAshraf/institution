@@ -1,0 +1,247 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Our Services",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "store": "Store",
+    "whatsapp": "WhatsApp",
+    "call_us": "Call Us",
+    "contact_us_text": "Contact Us"
+  },
+  "hero": {
+    "title": "Goodwill Foundation",
+    "subtitle": "For Operation and Maintenance",
+    "description": "We provide comprehensive solutions in operation, maintenance, and cleaning with the highest standards of quality and professionalism",
+    "explore_services": "Explore Our Services",
+    "contact_us": "Contact Us"
+  },
+  "home": {
+    "about_section_title": "About Us",
+    "about_section_subtitle": "A leading Saudi company in operation, maintenance, and cleaning",
+    "trusted_partner": "Your Trusted Partner in Comprehensive Services",
+    "about_description": "At Goodwill Foundation, we pride ourselves on providing exceptional services in operation, maintenance, and cleaning. With over 15 years of experience, we have become the first choice for many commercial and residential facilities in Saudi Arabia.",
+    "features": {
+      "feature1": "Highly qualified and trained workforce",
+      "feature2": "Using the latest technologies and equipment",
+      "feature3": "Full commitment to quality and safety standards",
+      "feature4": "24/7 excellent customer service"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Learn about our story, vision, and mission in serving our valued clients",
+    "partner_title": "Your Trusted Partner in Comprehensive Services",
+    "company_title": "Goodwill Foundation for Operation and Maintenance",
+    "description_p1": "Goodwill Foundation for Operation and Maintenance was established with the aim of providing excellent services in operation, maintenance, and cleaning for commercial and residential facilities in Saudi Arabia.",
+    "description_p2": "Since our inception, we have been striving for excellence in everything we offer, relying on a professional and trained workforce, latest equipment and technologies, and best practices in our field.",
+    "description_p3": "We are proud to be the trusted partner of more than 500 clients across various sectors, and we are committed to providing services that exceed their expectations and achieve their complete satisfaction.",
+    "achievements_title": "Our Achievements",
+    "achievements": {
+      "clients": "More than 500 satisfied clients",
+      "projects": "More than 1000 successfully completed projects",
+      "experience": "15 years of experience in the field",
+      "team": "Team of over 100 specialized employees",
+      "certificates": "Locally and internationally certified quality certificates",
+      "coverage": "Comprehensive coverage in all regions of the Kingdom"
+    },
+    "vision_title": "Our Vision",
+    "vision_text": "To be the first and most reliable choice in operation, maintenance, and cleaning services in Saudi Arabia, by providing excellent services characterized by high quality and continuous innovation.",
+    "mission_title": "Our Mission",
+    "mission_text": "To provide comprehensive and professional solutions in operation, maintenance, and cleaning that meet our clients' needs and exceed their expectations, while committing to the highest standards of quality, safety, and environmental sustainability.",
+    "values_title": "Our Values",
+    "values_subtitle": "The principles that govern our work and guide our journey",
+    "values": {
+      "quality_title": "Quality",
+      "quality_desc": "We commit to the highest quality standards in everything we offer",
+      "professionalism_title": "Professionalism",
+      "professionalism_desc": "Professional team trained on the latest methods and techniques",
+      "commitment_title": "Commitment",
+      "commitment_desc": "We stick to our deadlines and ensure projects are completed on time",
+      "satisfaction_title": "Client Satisfaction",
+      "satisfaction_desc": "Our clients' satisfaction is our primary goal and we always strive to achieve it"
+    },
+    "gallery_title": "Photo Gallery",
+    "gallery_subtitle": "Glimpses of our work and completed projects",
+    "cta_title": "Want to Work with Us?",
+    "cta_description": "We are always waiting for new partners and collaboration opportunities",
+    "learn_more": "Learn More About Us",
+    "contact_us_btn": "Contact Us"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We offer a comprehensive range of specialized services to meet your needs",
+    "page_title": "Our Distinguished Services",
+    "page_subtitle": "We provide a comprehensive range of professional services in operation, maintenance, and cleaning",
+    "view_all": "View All Services",
+    "operation": {
+      "title": "Operation Services",
+      "description": "We provide integrated operation services for facilities with high efficiency and professionalism",
+      "full_description": "We provide integrated operation solutions for commercial and residential facilities with a trained and qualified team",
+      "features": {
+        "feature1": "Facility and property management",
+        "feature2": "Mechanical systems operation",
+        "feature3": "Energy and utilities management",
+        "feature4": "Reception and security services"
+      }
+    },
+    "maintenance": {
+      "title": "Comprehensive Maintenance",
+      "description": "Periodic and preventive maintenance for all systems and equipment with the highest standards",
+      "full_description": "Periodic, preventive, and corrective maintenance for all systems and equipment with the highest quality standards",
+      "features": {
+        "feature1": "Scheduled preventive maintenance",
+        "feature2": "Emergency corrective maintenance",
+        "feature3": "HVAC systems maintenance",
+        "feature4": "Electrical systems maintenance"
+      }
+    },
+    "cleaning": {
+      "title": "Cleaning Services",
+      "description": "Comprehensive cleaning solutions for commercial and residential facilities with a specialized team",
+      "full_description": "Professional comprehensive cleaning solutions for facilities using the latest equipment and safe materials",
+      "features": {
+        "feature1": "Daily and periodic cleaning",
+        "feature2": "Facade and glass cleaning",
+        "feature3": "Sanitization and disinfection",
+        "feature4": "Carpet and upholstery cleaning"
+      }
+    },
+    "additional_services_title": "Additional Services",
+    "additional_services_subtitle": "A wide range of complementary services to meet all your needs",
+    "additional": {
+      "plumbing_title": "Plumbing Works",
+      "plumbing_desc": "Maintenance and repair of all plumbing and sewage systems",
+      "painting_title": "Painting Works",
+      "painting_desc": "Interior and exterior painting with the highest quality",
+      "electrical_title": "Electrical Works",
+      "electrical_desc": "Maintenance and installation of electrical systems",
+      "ac_title": "AC Maintenance",
+      "ac_desc": "Maintenance and installation of air conditioning and cooling units",
+      "construction_title": "Construction Works",
+      "construction_desc": "Finishing and structural renovations",
+      "building_management_title": "Building Management",
+      "building_management_desc": "Comprehensive management of buildings and facilities"
+    },
+    "why_choose_us_title": "Why Choose Us?",
+    "why_choose_us_subtitle": "We stand out with a set of advantages that make us the optimal choice",
+    "why": {
+      "quality_title": "Quality and Guarantee",
+      "quality_desc": "We guarantee the quality of our services with certified certificates and comprehensive warranty",
+      "planning_title": "Precise Planning",
+      "planning_desc": "We plan each project carefully to ensure optimal execution",
+      "experience_title": "Extensive Experience",
+      "experience_desc": "More than 15 years of experience in the field"
+    },
+    "cta_title": "Do You Need Any of Our Services?",
+    "cta_description": "Contact us today to get a free quote and specialized consultation",
+    "request_quote": "Request a Quote",
+    "facility_management": "Facility Management",
+    "preventive_maintenance": "Preventive Maintenance",
+    "specialized_cleaning": "Specialized Cleaning"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to answer your inquiries and provide the best services",
+    "phone": "Phone",
+    "email": "Email",
+    "email_label": "Email",
+    "address": "Address",
+    "form_title": "Send Us a Message",
+    "success_message": "Your message has been sent successfully! We will contact you soon.",
+    "error_message": "An error occurred while sending the message. Please try again.",
+    "name_label": "Full Name",
+    "name_placeholder": "Enter your full name",
+    "phone_label": "Mobile Number",
+    "phone_placeholder": "05XXXXXXXX",
+    "email_placeholder": "example@email.com",
+    "service_label": "Required Service",
+    "service_placeholder": "Choose Service",
+    "service_operation": "Operation Services",
+    "service_maintenance": "Comprehensive Maintenance",
+    "service_cleaning": "Cleaning Services",
+    "service_other": "Other",
+    "message_label": "Message",
+    "message_placeholder": "Write your message here...",
+    "submit_button": "Send Message",
+    "working_hours_title": "Working Hours",
+    "working_days": "Saturday - Thursday",
+    "working_time": "8:00 AM - 6:00 PM",
+    "friday": "Friday",
+    "closed": "Closed",
+    "follow_us": "Follow Us",
+    "quick_contact_title": "Quick Contact",
+    "quick_contact_desc": "For an immediate response, you can contact us via WhatsApp",
+    "whatsapp_message": "Hello, I would like to inquire about your services",
+    "location_title": "Our Location",
+    "map_title": "Our Location on the Map"
+  },
+  "stats": {
+    "satisfied_clients": "Satisfied Clients",
+    "completed_projects": "Completed Projects",
+    "years_experience": "Years of Experience",
+    "professional_team": "Professional Team"
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "subtitle": "Our clients' trust is the greatest proof of our service quality",
+    "client1": {
+      "name": "Mohammed Al-Otaibi",
+      "position": "Commercial Facility Manager",
+      "text": "Excellent service and high professionalism, the work team is cooperative and dedicated to providing the best services"
+    },
+    "client2": {
+      "name": "Ahmed Al-Saeed",
+      "position": "Property Owner",
+      "text": "We have been dealing with them for years, quality and punctuality are among their most important features"
+    },
+    "client3": {
+      "name": "Fahad Al-Dosari",
+      "position": "Residential Complex Manager",
+      "text": "Competitive prices and excellent service, highly recommended"
+    }
+  },
+  "cta": {
+    "title": "Are You Ready to Start with Us?",
+    "description": "Contact us today and get a free consultation for our distinguished services",
+    "contact_now": "Contact Us Now",
+    "whatsapp_contact": "Contact via WhatsApp"
+  },
+  "store": {
+    "title": "Online Store",
+    "coming_soon": "Coming Soon",
+    "under_development": "Store page is under development",
+    "description": "We are working on providing a comprehensive platform for purchasing our products and services easily",
+    "feature1_title": "Diverse Products",
+    "feature1_desc": "Wide range of products and services",
+    "feature2_title": "Professional Tools",
+    "feature2_desc": "High-quality maintenance and operation equipment and tools",
+    "feature3_title": "Quick Order",
+    "feature3_desc": "Easy and fast ordering system with efficient delivery",
+    "back_home": "Back to Home",
+    "contact_inquiry": "Contact Us for Inquiry",
+    "launch_soon": "Stay tuned for the store launch soon"
+  },
+  "footer": {
+    "company_name": "Goodwill Foundation",
+    "company_description": "We are a leading Saudi company in operation, maintenance, and cleaning, providing comprehensive solutions for commercial and residential facilities with the highest quality standards.",
+    "quick_links": "Quick Links",
+    "our_services": "Our Services",
+    "contact_us": "Contact Us",
+    "location": "Saudi Arabia",
+    "email": "info@goodwill.sa",
+    "follow_us": "Follow Us",
+    "copyright": "All rights reserved.",
+    "privacy_policy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  },
+  "common": {
+    "read_more": "Read More",
+    "learn_more": "Learn More",
+    "view_more": "View More",
+    "close": "Close",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "required": "*"
+  }
+}
