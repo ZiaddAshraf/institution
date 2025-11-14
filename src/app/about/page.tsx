@@ -107,16 +107,16 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-6">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
                 مؤسسة طريق الخير للتشغيل والصيانة
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-100 leading-relaxed mb-4">
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed mb-4">
                 تأسست مؤسسة طريق الخير للتشغيل والصيانة بهدف تقديم خدمات متميزة في مجال التشغيل والصيانة والنظافة للمنشآت التجارية والسكنية في المملكة العربية السعودية.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed mb-4">
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed mb-4">
                 منذ انطلاقتنا، ونحن نسعى لتحقيق التميز في كل ما نقدمه، مستندين على فريق عمل محترف ومدرب، وأحدث المعدات والتقنيات، وأفضل الممارسات في مجال عملنا.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
                 نفخر بكوننا الشريك الموثوق لأكثر من 500 عميل في مختلف القطاعات، ونلتزم بتقديم خدمات تفوق توقعاتهم وتحقق رضاهم التام.
               </p>
             </motion.div>
@@ -141,16 +141,16 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gray-50 rounded-2xl p-8 md:p-12"
+            className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-8 md:p-12"
           >
-            <h3 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
               إنجازاتنا
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {achievements.map((achievement, index) => (
                 <div key={index} className="flex items-start space-x-3 space-x-reverse">
                   <FaCheckCircle className="text-primary-500 mt-1 flex-shrink-0" size={24} />
-                  <span className="text-lg text-gray-700">{achievement}</span>
+                  <span className="text-lg text-gray-800 dark:text-gray-200">{achievement}</span>
                 </div>
               ))}
             </div>
@@ -171,8 +171,8 @@ export default function About() {
               <div className="bg-gradient-to-r from-primary-500 to-primary-600 w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6">
                 <FaEye size={32} />
               </div>
-              <h3 className="text-3xl font-bold text-gray-800 mb-4">رؤيتنا</h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">رؤيتنا</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
                 أن نكون الخيار الأول والأكثر موثوقية في مجال خدمات التشغيل والصيانة والنظافة في المملكة العربية السعودية، من خلال تقديم خدمات متميزة تتسم بالجودة العالية والابتكار المستمر.
               </p>
             </motion.div>
@@ -181,8 +181,8 @@ export default function About() {
               <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6">
                 <FaBullseye size={32} />
               </div>
-              <h3 className="text-3xl font-bold text-gray-800 mb-4">رسالتنا</h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">رسالتنا</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
                 تقديم حلول متكاملة واحترافية في مجال التشغيل والصيانة والنظافة تلبي احتياجات عملائنا وتتجاوز توقعاتهم، مع الالتزام بأعلى معايير الجودة والسلامة والاستدامة البيئية.
               </p>
             </motion.div>
@@ -215,10 +215,10 @@ export default function About() {
                 <div className="text-primary-500 mb-4 flex justify-center">
                   {value.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                   {value.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>

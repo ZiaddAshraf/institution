@@ -130,7 +130,7 @@ export default function Contact() {
   return (
     <>
       {/* Header Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white overflow-hidden">
+      <section className="relative pt-32 pb-24 bg-gradient-to-br from-primary-600 to-secondary-600 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: 'url("/imgs/hero1.jpg")',
@@ -149,14 +149,14 @@ export default function Contact() {
           <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl font-bold mb-6 text-center">
             {t.contact.title}
           </motion.h1>
-          <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-center max-w-3xl mx-auto">
+          <motion.p variants={fadeInUp} className="text-lg md:text-xl text-center max-w-3xl mx-auto opacity-95">
             {t.contact.subtitle}
           </motion.p>
         </motion.div>
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-20 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-800">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {contactInfo.map((item, index) => (
@@ -168,16 +168,17 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
                 className="card p-6 text-center group cursor-pointer"
               >
-                <div className={`bg-gradient-to-r ${item.color} w-16 h-16 rounded-full flex items-center justify-center text-white mx-auto mb-4 transform group-hover:scale-110 transition-transform`}>
+                <div className={`bg-gradient-to-br ${item.color} w-16 h-16 rounded-xl flex items-center justify-center text-white mx-auto mb-5 group-hover:scale-110 transition-transform shadow-lg`}>
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-700 dark:text-gray-200">
                   {item.info}
                 </p>
               </motion.a>
@@ -195,18 +196,18 @@ export default function Contact() {
               className="lg:col-span-2"
             >
               <motion.div variants={fadeInUp} className="card p-8">
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                   {t.contact.form_title}
                 </h2>
 
                 {submitStatus === 'success' && (
-                  <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-6">
+                  <div className="bg-green-50 dark:bg-green-900/30 border border-green-400 text-green-700 dark:text-green-300 px-5 py-4 rounded-xl mb-6">
                     تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
-                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-6">
+                  <div className="bg-red-50 dark:bg-red-900/30 border border-red-400 text-red-700 dark:text-red-300 px-5 py-4 rounded-xl mb-6">
                     حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.
                   </div>
                 )}
@@ -214,7 +215,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
+                      <label htmlFor="name" className="block text-gray-800 dark:text-gray-200 font-semibold mb-2">
                           {t.contact.name_label} *
                         </label>
                       <input
@@ -224,13 +225,13 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                        className="input-field"
                         placeholder={t.contact.name_placeholder}
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="phone" className="block text-gray-700 font-semibold mb-2">
+                      <label htmlFor="phone" className="block text-gray-800 dark:text-gray-200 font-semibold mb-2">
                         {t.contact.phone_label} *
                       </label>
                       <input
@@ -240,14 +241,14 @@ export default function Contact() {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                        className="input-field"
                         placeholder={t.contact.phone_placeholder}
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">
+                    <label htmlFor="email" className="block text-gray-800 dark:text-gray-200 font-semibold mb-2">
                       {t.contact.email_label} *
                     </label>
                     <input
@@ -257,13 +258,13 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                      className="input-field"
                       placeholder={t.contact.email_placeholder}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="service" className="block text-gray-700 font-semibold mb-2">
+                    <label htmlFor="service" className="block text-gray-800 dark:text-gray-200 font-semibold mb-2">
                       {t.contact.service_label}
                     </label>
                     <select
@@ -271,7 +272,7 @@ export default function Contact() {
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                      className="input-field"
                     >
                       <option value="">{t.contact.service_placeholder}</option>
                       <option value="operation">{t.contact.service_operation}</option>
@@ -282,7 +283,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                      <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">
+                      <label htmlFor="message" className="block text-gray-800 dark:text-gray-200 font-semibold mb-2">
                       {t.contact.message_label} *
                     </label>
                     <textarea
@@ -292,7 +293,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+                      className="input-field resize-none"
                       placeholder={t.contact.message_placeholder}
                     ></textarea>
                   </div>
@@ -317,19 +318,19 @@ export default function Contact() {
             >
               {/* Working Hours */}
               <div className="card p-6">
-                <div className="flex items-center space-x-3 space-x-reverse mb-4">
-                  <div className="bg-gradient-to-r from-primary-500 to-primary-600 w-12 h-12 rounded-full flex items-center justify-center text-white">
-                    <FaClock size={24} />
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="bg-gradient-to-br from-primary-500 to-primary-600 w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-md">
+                    <FaClock size={22} />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                     {t.contact.working_hours_title}
                   </h3>
                 </div>
                 <div className="space-y-3">
                   {workingHours.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center border-b border-gray-200 pb-2">
-                      <span className="text-gray-700 font-semibold">{item.day}</span>
-                      <span className="text-gray-600">{item.hours}</span>
+                    <div key={index} className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-3 last:border-0 last:pb-0">
+                      <span className="text-gray-800 dark:text-gray-200 font-semibold">{item.day}</span>
+                      <span className="text-gray-700 dark:text-gray-300">{item.hours}</span>
                     </div>
                   ))}
                 </div>
@@ -337,7 +338,7 @@ export default function Contact() {
 
               {/* Social Media */}
               <div className="card p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-5">
                   {t.contact.follow_us}
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
@@ -347,7 +348,7 @@ export default function Contact() {
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center justify-center space-x-2 space-x-reverse bg-gray-800 ${social.color} text-white py-3 rounded-lg transition-all transform hover:scale-105`}
+                      className={`flex items-center justify-center gap-2 bg-gray-800 ${social.color} text-white py-3.5 rounded-lg transition-all hover:scale-105 shadow-md`}
                     >
                       {social.icon}
                       <span className="text-sm font-semibold">{social.name}</span>
@@ -357,20 +358,20 @@ export default function Contact() {
               </div>
 
               {/* Quick Contact */}
-              <div className="card p-6 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+              <div className="card p-6 bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
                 <h3 className="text-xl font-bold mb-4">
                     {t.contact.quick_contact_title}
                   </h3>
-                  <p className="mb-4">
+                  <p className="mb-5 opacity-95">
                     {t.contact.quick_contact_desc}
                   </p>
                 <a
                   href="https://wa.me/966XXXXXXXXX?text=مرحباً، أود الاستفسار عن خدماتكم"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-white text-primary-600 hover:bg-gray-100 text-center font-semibold py-3 px-6 rounded-lg transition-all"
+                  className="block bg-white text-primary-600 hover:bg-gray-50 text-center font-bold py-3.5 px-6 rounded-lg transition-all hover:scale-105 shadow-lg"
                 >
-                  <div className="flex items-center justify-center space-x-2 space-x-reverse">
+                  <div className="flex items-center justify-center gap-2">
                     <FaWhatsapp size={20} />
                       <span>{t.contact.whatsapp_message}</span>
                   </div>
@@ -382,7 +383,7 @@ export default function Contact() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
