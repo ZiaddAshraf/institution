@@ -62,7 +62,7 @@ const Navbar = () => {
     { href: '/services', label: t.nav.services },
     { href: '/about', label: t.nav.about },
     { href: '/contact', label: t.nav.contact },
-    { href: '/store', label: t.nav.store, icon: <FaStore /> },
+    // { href: '/store', label: t.nav.store, icon: <FaStore /> },
   ]
 
   return (
@@ -114,8 +114,8 @@ const Navbar = () => {
                 isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'
               }`}
             >
-              <FaStore />
-              {navLinks[4].label}
+              {/* <FaStore /> */}
+              {/* {navLinks[4].label} */}
             </Link>
             
             {/* Actions */}
@@ -179,7 +179,6 @@ const Navbar = () => {
                       className="flex items-center gap-3 text-gray-700 dark:text-gray-200 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-gray-700 font-semibold px-4 py-3 rounded-lg transition-all"
                       onClick={() => setIsOpen(false)}
                     >
-                      {link.icon && <span className="text-lg">{link.icon}</span>}
                       {link.label}
                     </Link>
                   </motion.div>
