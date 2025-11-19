@@ -108,15 +108,7 @@ const Navbar = () => {
             <div className="h-8 w-px bg-gray-300 dark:bg-gray-600"></div>
             
             {/* Store Link */}
-            <Link
-              href="/store"
-              className={`flex items-center gap-2 font-semibold px-4 py-2 rounded-lg transition-all hover:bg-primary-500/10 ${
-                isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'
-              }`}
-            >
-              {/* <FaStore /> */}
-              {/* {navLinks[4].label} */}
-            </Link>
+            
             
             {/* Actions */}
             <div className="flex items-center gap-3">
@@ -124,21 +116,13 @@ const Navbar = () => {
               <LanguageSwitcher />
               
               <a
-                href="https://wa.me/966XXXXXXXXX"
+                href="https://wa.me/966557221833?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-lg transition-all hover:scale-105 shadow-md"
               >
                 <FaWhatsapp className="text-lg" />
                 <span className="hidden xl:inline text-sm font-semibold">{t.nav.whatsapp}</span>
-              </a>
-              
-              <a
-                href="tel:+966XXXXXXXXX"
-                className="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-4 py-2.5 rounded-lg transition-all hover:scale-105 shadow-md"
-              >
-                <FaPhone />
-                <span className="hidden xl:inline text-sm font-semibold">{t.nav.call_us}</span>
               </a>
             </div>
           </div>
@@ -191,7 +175,7 @@ const Navbar = () => {
                   </div>
                   
                   <a
-                    href="https://wa.me/966XXXXXXXXX"
+                    href="https://wa.me/966557221833?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-3 rounded-lg transition-all hover:scale-105 shadow-md"
@@ -200,13 +184,8 @@ const Navbar = () => {
                     <span>{t.nav.whatsapp}</span>
                   </a>
                   
-                  <a
-                    href="tel:+966XXXXXXXXX"
-                    className="flex items-center justify-center gap-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold px-4 py-3 rounded-lg transition-all hover:scale-105 shadow-md"
-                  >
-                    <FaPhone />
-                    <span>{t.nav.call_us}</span>
-                  </a>
+                  
+                    
                 </div>
               </div>
             </motion.div>

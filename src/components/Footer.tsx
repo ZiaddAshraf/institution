@@ -105,9 +105,10 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <FaPhone className="text-primary-400 flex-shrink-0" />
-                <a href="tel:+966XXXXXXXXX" className="text-gray-300 hover:text-primary-400 transition-colors">
-                  +966 XX XXX XXXX
-                </a>
+                <p className="text-gray-300 hover:text-primary-400 transition-colors">
+                  966557221833
+                   
+                </p>
               </li>
               <li className="flex items-center gap-3">
                 <FaEnvelope className="text-primary-400 flex-shrink-0" />
@@ -117,7 +118,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <FaWhatsapp className="text-primary-400 flex-shrink-0" />
-                <a href="https://wa.me/966XXXXXXXXX" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary-400 transition-colors">
+                <a href="https://wa.me/966557221833" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary-400 transition-colors">
                   {t.nav.whatsapp}
                 </a>
               </li>
@@ -144,7 +145,7 @@ const Footer = () => {
                   <FaTwitter size={20} />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/goodwill.laundries3"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-primary-500 p-3 rounded-lg transition-all hover:scale-110 shadow-md"
@@ -152,7 +153,7 @@ const Footer = () => {
                   <FaInstagram size={20} />
                 </a>
                 <a
-                  href="https://wa.me/966XXXXXXXXX"
+                  href="https://wa.me/966557221833"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-green-500 p-3 rounded-lg transition-all hover:scale-110 shadow-md"

@@ -26,7 +26,7 @@ const WhatsAppButton = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.a
-          href={`https://wa.me/966XXXXXXXXX?text=${encodeURIComponent(t.contact.whatsapp_message || 'مرحباً، أود الاستفسار عن خدماتكم')}`}
+          href={`https://wa.me/966557221833?text=${encodeURIComponent(t.contact.whatsapp_message || 'مرحباً، أود الاستفسار عن خدماتكم')}`}
           target="_blank"
           rel="noopener noreferrer"
           initial={{ scale: 0, opacity: 0 }}

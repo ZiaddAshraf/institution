@@ -68,15 +68,15 @@ export default function Contact() {
     {
       icon: <FaPhone size={30} />,
       title: t.contact.phone,
-      info: '+966 XX XXX XXXX',
-      link: 'tel:+966XXXXXXXXX',
+      info: '966557221833+',
+      link: 'tel:+966557221833',
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: <FaWhatsapp size={30} />,
       title: t.nav.whatsapp,
-      info: '+966 XX XXX XXXX',
-      link: 'https://wa.me/966XXXXXXXXX',
+      info: '966557221833+',
+      link: 'https://wa.me/966557221833?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85',
       color: 'from-green-500 to-green-600'
     },
     {
@@ -89,8 +89,8 @@ export default function Contact() {
     {
       icon: <FaMapMarkerAlt size={30} />,
       title: t.contact.address,
-      info: t.footer.location || 'المملكة العربية السعودية',
-      link: '#',
+      info: t.footer.location || '7625 ابن مراوح المزني، حي الدواسر، الدمام 32416، السعودية',
+      link: 'https://maps.google.com/maps?vet=10CAAQoqAOahcKEwiI78yz6f6QAxUAAAAAHQAAAAAQBQ..i&sca_esv=55588fd05011d482&pvq=Cg0vZy8xMWw0ZDdzd2Zo&lqi=CmE3NjI1INin2KjZhiDZhdix2KfZiNitINin2YTZhdiy2YbZitiMINit2Yog2KfZhNiv2YjYp9iz2LHYjCDYp9mE2K_Zhdin2YUgMzI0MTbYjCDYp9mE2LPYudmI2K_ZitipkgERY29tcG91bmRfYnVpbGRpbmc&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=eg&sa=X&ftid=0x3e49fc741c1d5b8f:0x93cd7cf3c9108d3a',
       color: 'from-purple-500 to-purple-600'
     }
   ]
@@ -104,7 +104,7 @@ export default function Contact() {
     {
       icon: <FaInstagram size={24} />,
   name: 'Instagram',
-      link: 'https://instagram.com',
+      link: 'https://www.instagram.com/goodwill.laundries3',
       color: 'hover:bg-pink-600'
     },
     {
@@ -122,7 +122,7 @@ export default function Contact() {
     {
       icon: <FaWhatsapp size={24} />,
       name: 'WhatsApp',
-      link: 'https://wa.me/966XXXXXXXXX',
+      link: 'https://wa.me/966557221833?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85',
       color: 'hover:bg-green-600'
     }
   ]
@@ -366,7 +366,7 @@ export default function Contact() {
                     {t.contact.quick_contact_desc}
                   </p>
                 <a
-                  href="https://wa.me/966XXXXXXXXX?text=مرحباً، أود الاستفسار عن خدماتكم"
+                  href="https://wa.me/966557221833?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block bg-white text-primary-600 hover:bg-gray-50 text-center font-bold py-3.5 px-6 rounded-lg transition-all hover:scale-105 shadow-lg"
@@ -395,7 +395,7 @@ export default function Contact() {
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               {/* Google Maps Embed - Replace with your actual location */}
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.9476154844677!2d46.67244631500263!3d24.71354848410935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03b0f3f3f3f3%3A0x3f3f3f3f3f3f3f3f!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3576.1999999999994!2d50.04!3d26.42!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49fc741c1d5b8f%3A0x93cd7cf3c9108d3a!2z3Jc2MjUg2KfYqNmGINmF2LHYp9mI2K0g2KfZhNmF2LLZhti52Iwg2K3ZiiDYp9mE2K_ZiNin2LPYsdiyINin2YTYr9mF2KfZhSDZpdmEINin2YTYs9i52YjYr9mK2Kk!5e0!3m2!1sen!2s!4v1234567890123"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}

@@ -1,5 +1,6 @@
  'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
@@ -27,6 +28,7 @@ export default function About() {
   const [missionRef, missionInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [valuesRef, valuesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [galleryRef, galleryInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   const values = [
     {
@@ -61,7 +63,7 @@ export default function About() {
   ]
 
   const gallery = [
-    '/imgs/hero1.jpg',
+    '/imgs/essintial.jpg',
     '/imgs/hero2.jpg',
     '/imgs/hero3.jpg',
     '/imgs/Service1.jpg',
@@ -247,12 +249,15 @@ export default function About() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="relative group overflow-hidden rounded-xl shadow-lg"
+                className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer"
+                onClick={() => setSelectedImage(image)}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
                 <img
                   src={image}
                   alt={`Gallery ${index + 1}`}
-                  className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
@@ -260,6 +265,29 @@ export default function About() {
           </div>
         </motion.div>
       </section>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 backdrop-blur-sm"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <img
+            src={selectedImage}
+            alt="Gallery fullscreen"
+            className="max-w-full max-h-full object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
