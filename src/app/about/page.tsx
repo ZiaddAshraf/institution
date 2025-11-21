@@ -128,11 +128,13 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="cursor-pointer"
+              onClick={() => setSelectedImage('/imgs/essintial.jpg')}
             >
               <img
-                src="/imgs/hero2.jpg"
+                src="/imgs/essintial.jpg"
                 alt="About Us"
-                className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                className="rounded-2xl shadow-2xl w-full h-[600px] object-cover hover:shadow-3xl transition-shadow duration-300"
               />
             </motion.div>
           </div>
