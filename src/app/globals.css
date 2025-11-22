@@ -65,15 +65,33 @@ body {
   }
 
   .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl relative overflow-hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
   }
 
   .btn-secondary {
-    @apply bg-secondary-500 hover:bg-secondary-600 text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-secondary-500 hover:bg-secondary-600 text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl;
   }
 
   .btn-outline {
-    @apply border-2 border-primary-500 text-primary-500 dark:text-primary-400 hover:bg-primary-500 hover:text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 hover:scale-105;
+    @apply border-2 border-primary-500 text-primary-500 dark:text-primary-400 hover:bg-primary-500 hover:text-white font-semibold py-3.5 px-8 rounded-lg transition-all duration-300 backdrop-blur-sm;
   }
 
   .card {
