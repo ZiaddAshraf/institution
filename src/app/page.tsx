@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useI18n } from '@/contexts/I18nContext'
 import { FaCog, FaBroom, FaTools, FaCheckCircle, FaStar, FaQuoteLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
+import StatsCounter from '@/components/StatsCounter'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -91,7 +92,7 @@ export default function Home() {
   ]
 
   const stats = [
-    { number: '500+', label: t.stats.satisfied_clients },
+    { number: '0+', label: t.stats.satisfied_clients },
     { number: '1000+', label: t.stats.completed_projects },
     { number: '15+', label: t.stats.years_experience },
     { number: '100+', label: t.stats.professional_team }
@@ -432,6 +433,9 @@ export default function Home() {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => {
+              // For the first stat (satisfied clients), use StatsCounter
+              const isFirstStat = index === 0
+              
               const numericValue = parseInt(stat.number.replace(/\D/g, ''))
               const suffix = stat.number.replace(/[0-9]/g, '')
               const animatedCount = useCounter(numericValue, 2000, statsInView)
@@ -446,9 +450,13 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-white/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                    <div className="text-5xl md:text-6xl font-bold mb-3">
-                      {animatedCount}{suffix}
-                    </div>
+                    {isFirstStat ? (
+                      <StatsCounter duration={2000} />
+                    ) : (
+                      <div className="text-5xl md:text-6xl font-bold mb-3">
+                        {animatedCount}{suffix}
+                      </div>
+                    )}
                     <div className="text-lg md:text-xl opacity-90 font-medium">{stat.label}</div>
                   </div>
                 </motion.div>
@@ -458,111 +466,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Testimonials Section */}
-      <section ref={testimonialsRef} className="py-32 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
-        {/* Decorative background */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-[10%] w-80 h-80 bg-primary-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-32 right-[15%] w-72 h-72 bg-secondary-500/10 rounded-full blur-3xl"></div>
-        </div>
-
-        <motion.div
-          initial="hidden"
-          animate={testimonialsInView ? "visible" : "hidden"}
-          variants={staggerContainer}
-          className="container-custom relative z-10"
-        >
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="section-title">آراء عملائنا</h2>
-            <p className="section-subtitle max-w-3xl mx-auto">
-              ثقة عملائنا هي أكبر دليل على جودة خدماتنا
-            </p>
-          </motion.div>
-
-          {/* Carousel Container */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="relative h-[400px] md:h-[350px] overflow-hidden">
-              <AnimatePresence initial={false} custom={direction} mode="wait">
-                <motion.div
-                  key={currentTestimonial}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="absolute w-full"
-                >
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-10 md:p-12 mx-4 border border-gray-100 dark:border-gray-700 relative overflow-hidden">
-                    {/* Gradient overlay */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-transparent rounded-bl-full"></div>
-                    
-                    <div className="relative z-10">
-                      <FaQuoteLeft className="text-primary-500 text-5xl mb-6" />
-                      
-                      <div className="flex gap-1 mb-6">
-                        {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                          <FaStar key={i} className="text-yellow-400" size={20} />
-                        ))}
-                      </div>
-
-                      <p className="text-gray-700 dark:text-gray-200 mb-8 leading-relaxed text-xl">
-                        "{testimonials[currentTestimonial].text}"
-                      </p>
-
-                      <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                        <h4 className="font-bold text-gray-900 dark:text-white text-2xl">
-                          {testimonials[currentTestimonial].name}
-                        </h4>
-                        <p className="text-gray-600 dark:text-gray-300 text-base mt-2">
-                          {testimonials[currentTestimonial].position}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white dark:bg-gray-800 hover:bg-primary-500 dark:hover:bg-primary-500 text-gray-800 dark:text-gray-200 hover:text-white p-4 rounded-full shadow-xl transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-gray-700 z-10"
-              aria-label="Previous testimonial"
-            >
-              <FaChevronRight size={20} />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white dark:bg-gray-800 hover:bg-primary-500 dark:hover:bg-primary-500 text-gray-800 dark:text-gray-200 hover:text-white p-4 rounded-full shadow-xl transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-gray-700 z-10"
-              aria-label="Next testimonial"
-            >
-              <FaChevronLeft size={20} />
-            </button>
-
-            {/* Indicators */}
-            <div className="flex justify-center gap-3 mt-8">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setDirection(index > currentTestimonial ? 1 : -1)
-                    setCurrentTestimonial(index)
-                  }}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial
-                      ? 'w-10 bg-primary-500'
-                      : 'w-2.5 bg-gray-300 dark:bg-gray-600 hover:bg-primary-300'
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-32 bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-600 text-white relative overflow-hidden">
+      <section className="py-32 bg-white dark:bg-gray-800 relative overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -572,7 +477,7 @@ export default function Home() {
               y: [0, -50, 0]
             }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl"
+            className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/5 rounded-full blur-3xl"
           />
           <motion.div
             animate={{ 
@@ -581,7 +486,7 @@ export default function Home() {
               y: [0, 50, 0]
             }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl"
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary-500/5 rounded-full blur-3xl"
           />
         </div>
 
@@ -593,18 +498,18 @@ export default function Home() {
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <motion.h2 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 relative inline-block"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 relative inline-block text-gray-900 dark:text-white"
               whileInView={{ scale: [0.9, 1] }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
               هل أنت جاهز للبدء معنا؟
-              <span className="absolute -inset-4 bg-white/10 blur-2xl rounded-full -z-10"></span>
+              <span className="absolute -inset-4 bg-primary-500/10 blur-2xl rounded-full -z-10"></span>
             </motion.h2>
             <motion.p 
-              className="text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-95 leading-relaxed"
+              className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-gray-700 dark:text-gray-200"
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.95 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
@@ -621,7 +526,7 @@ export default function Home() {
                 whileHover={{ scale: 1.08, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link href="/contact" className="bg-white text-primary-600 hover:bg-gray-100 font-bold py-4 px-10 rounded-xl transition-all shadow-2xl inline-block">
+                <Link href="/contact" className="bg-primary-600 text-white hover:bg-primary-700 font-bold py-4 px-10 rounded-xl transition-all shadow-2xl inline-block">
                   اتصل بنا الآن
                 </Link>
               </motion.div>
@@ -629,7 +534,7 @@ export default function Home() {
                 whileHover={{ scale: 1.08, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <a href="https://wa.me/966XXXXXXXXX" target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-2xl inline-block">
+                <a href="https://wa.me/966557221833?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85" target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-2xl inline-block">
                   تواصل عبر واتساب
                 </a>
               </motion.div>
