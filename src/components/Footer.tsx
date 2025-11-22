@@ -112,7 +112,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <FaEnvelope className="text-primary-400 flex-shrink-0" />
-                <a href="mailto:info@goodwill.sa" className="text-gray-300 hover:text-primary-400 transition-colors">
+                <a href="mailto:Goodwill.laundries@gmail.com" className="text-gray-300 hover:text-primary-400 transition-colors">
                   {t.footer.email}
                 </a>
               </li>

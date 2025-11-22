@@ -7,7 +7,7 @@ export default function StructuredData() {
     '@id': 'https://goodwill-foundation.com',
     url: 'https://goodwill-foundation.com',
     telephone: '+966XXXXXXXXX',
-    email: 'info@goodwill.sa',
+    email: 'Goodwill.laundries@gmail.com',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'SA',

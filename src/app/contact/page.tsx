@@ -80,11 +80,11 @@ export default function Contact() {
       color: 'from-green-500 to-green-600'
     },
     {
-      icon: <FaEnvelope size={30} />,
+      icon: <FaEnvelope size={28} />,
       title: t.contact.email,
-      info: 'info@goodwill.sa',
-      link: 'mailto:info@goodwill.sa',
-      color: 'from-red-500 to-red-600'
+      info: 'Goodwill.laundries@gmail.com',
+      link: 'mailto:Goodwill.laundries@gmail.com',
+      color: 'from-red-500 to-pink-500'
     },
     {
       icon: <FaMapMarkerAlt size={30} />,
