@@ -7,6 +7,7 @@ import { useI18n } from '@/contexts/I18nContext'
 import { FaCog, FaBroom, FaTools, FaCheckCircle, FaHeadset, FaCertificate, FaAward } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import StatsCounter from '@/components/StatsCounter'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -28,37 +29,12 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }
 }
 
-const useCounter = (end: number, duration: number = 2000, inView: boolean) => {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    if (!inView) return
-    
-    let startTime: number | null = null
-    const startValue = 0
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime
-      const progress = Math.min((currentTime - startTime) / duration, 1)
-      
-      const easeOutQuad = (t: number) => t * (2 - t)
-      const currentCount = Math.floor(easeOutQuad(progress) * (end - startValue) + startValue)
-      
-      setCount(currentCount)
-      
-      if (progress < 1) {
-        requestAnimationFrame(animate)
-      }
-    }
-
-    requestAnimationFrame(animate)
-  }, [end, duration, inView])
-
-  return count
-}
-
 export default function Home() {
   const { t } = useI18n()
+  
+  // Loading state for initial page load
+  const [isLoading, setIsLoading] = useState(true)
+  
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [servicesRef, servicesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -117,6 +93,15 @@ export default function Home() {
     }
   ]
 
+  useEffect(() => {
+    // Simulate initial loading (minimum 1.5s to show loading animation)
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   // Auto-slide testimonials
   useEffect(() => {
     const timer = setInterval(() => {
@@ -126,6 +111,11 @@ export default function Home() {
 
     return () => clearInterval(timer)
   }, [testimonials.length])
+
+  // Show loading screen on initial render
+  if (isLoading) {
+    return <LoadingSpinner />
+  }
 
   const nextTestimonial = () => {
     setDirection(1)
@@ -464,10 +454,6 @@ export default function Home() {
               // For the first stat (satisfied clients), use StatsCounter
               const isFirstStat = index === 0
               
-              const numericValue = parseInt(stat.number.replace(/\D/g, ''))
-              const suffix = stat.number.replace(/[0-9]/g, '')
-              const animatedCount = useCounter(numericValue, 2000, statsInView)
-              
               return (
                 <motion.div
                   key={index}
@@ -485,7 +471,7 @@ export default function Home() {
                       <StatsCounter duration={2000} />
                     ) : (
                       <div className="text-5xl md:text-6xl font-bold mb-3">
-                        {animatedCount}{suffix}
+                        {stat.number}
                       </div>
                     )}
                     <div className="text-lg md:text-xl opacity-90 font-medium">{stat.label}</div>

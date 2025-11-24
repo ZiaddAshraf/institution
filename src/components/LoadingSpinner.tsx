@@ -155,7 +155,7 @@ export default function LoadingSpinner() {
           className="relative z-10 mb-6"
         >
           <Image
-            src="/assets/logo.jpg"
+            src="/imgs/logo.jpg"
             alt="Logo"
             width={120}
             height={120}
