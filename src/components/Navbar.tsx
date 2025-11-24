@@ -15,13 +15,22 @@ const Navbar = () => {
   const { t } = useI18n()
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    handleScroll(); // Check initial scroll position
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -67,10 +76,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-700 ${
+      className={`fixed w-full z-50 transition-all duration-300 will-change-transform ${
         isScrolled
-          ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-2xl py-3 border-b border-white/20 dark:border-gray-700/50'
-          : 'bg-transparent py-4'
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg py-3 border-b border-gray-200/50 dark:border-gray-700/50'
+          : 'bg-transparent py-3'
       }`}
     >
       <div className="container-custom">
@@ -80,7 +89,7 @@ const Navbar = () => {
             <img
               src="/imgs/logo.jpg"
               alt={t.footer.company_name}
-              className="h-12 md:h-14 w-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              className="h-12 w-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
             />
             <div className={`hidden md:block transition-colors ${isScrolled ? 'text-gray-800 dark:text-gray-100' : 'text-white'}`}>
               <h1 className="text-lg font-bold leading-tight">{t.hero.title}</h1>

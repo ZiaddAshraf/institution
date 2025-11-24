@@ -46,17 +46,26 @@
 html {
   scroll-behavior: smooth;
 }
-
 body {
-  font-family: 'Cairo', 'Tajawal', sans-serif;
+  /* التغيير الأساسي: تجوّل أولاً لأنه أنسب للهوية السعودية */
+  font-family: 'Tajawal', 'Cairo', sans-serif;
+  
   color: var(--text-dark);
   background-color: var(--background);
+  
+  /* أساسيات اللغة العربية */
   direction: rtl;
   text-align: right;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  line-height: 1.7;
+  
+  /* تحسين القراءة */
+  line-height: 1.8; /* زيادة بسيطة لراحة العين */
+  
+  /* تحسينات نعومة الخط (Rendering) */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; /* إضافة مهمة لوضوح الحروف */
+  
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @layer components {

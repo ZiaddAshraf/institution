@@ -79,7 +79,9 @@ export default function RootLayout({
       <body className="antialiased">
         <ThemeWrapper>
           <Navbar />
-          {children}
+          <main>
+            {children}
+          </main>
           <Footer />
           <WhatsAppButton />
         </ThemeWrapper>

@@ -62,14 +62,7 @@ export default function About() {
     t.about.achievements.coverage
   ]
 
-  const gallery = [
-    '/imgs/essintial.jpg',
-    '/imgs/hero2.jpg',
-    '/imgs/hero3.jpg',
-    '/imgs/Service1.jpg',
-    '/imgs/Service2.jpg',
-    '/imgs/Service3.jpg'
-  ]
+  
 
   return (
     <>
@@ -90,11 +83,11 @@ export default function About() {
           variants={staggerContainer}
           className="container-custom relative z-10"
         >
-          <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl font-bold mb-6 text-center">
+          <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 text-center">
             من نحن
           </motion.h1>
           <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-center max-w-3xl mx-auto">
-            تعرف على قصتنا ورؤيتنا ورسالتنا في خدمة عملائنا الكرام
+            تعرف على هويتنا وأهدافنا في خدمة عملائنا
           </motion.p>
         </motion.div>
       </section>
@@ -112,15 +105,37 @@ export default function About() {
               <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
                 مؤسسة طريق الخير للتشغيل والصيانة
               </h2>
-              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed mb-4">
-                تأسست مؤسسة طريق الخير للتشغيل والصيانة بهدف تقديم خدمات متميزة في مجال التشغيل والصيانة والنظافة للمنشآت التجارية والسكنية في المملكة العربية السعودية.
+              <p className="text-xl font-semibold text-primary-600 dark:text-primary-400 mb-6 leading-relaxed">
+                شريككم الموثوق في تقديم خدمات التشغيل والصيانة والنظافة للمنشآت التجارية والسكنية
               </p>
-              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed mb-4">
-                منذ انطلاقتنا، ونحن نسعى لتحقيق التميز في كل ما نقدمه، مستندين على فريق عمل محترف ومدرب، وأحدث المعدات والتقنيات، وأفضل الممارسات في مجال عملنا.
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] mb-4">
+                تأسست مؤسسة طريق الخير بهدف تقديم خدمات متميزة في مجال التشغيل والصيانة والنظافة للمنشآت التجارية والسكنية في المملكة العربية السعودية.
               </p>
-              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
-                نفخر بكوننا الشريك الموثوق لأكثر من 500 عميل في مختلف القطاعات، ونلتزم بتقديم خدمات تفوق توقعاتهم وتحقق رضاهم التام.
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] mb-4">
+                منذ انطلاقتنا، ونحن نسعى لتحقيق التميز في كل ما نقدمه، مستندين على فريق عمل محترف ومدرب، وأحدث المعدات والتقنيات.
               </p>
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] mb-6">
+                نفخر بكوننا الشريك الموثوق لأكثر من 500 عميل في مختلف القطاعات، ونلتزم بتقديم خدمات تفوق توقعاتهم.
+              </p>
+              
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 space-x-reverse">
+                  <FaCheckCircle className="text-primary-500 flex-shrink-0" size={22} />
+                  <span className="text-lg text-gray-800 dark:text-gray-200">خبرة واسعة في مجال التنظيف و التشغيل والصيانة</span>
+                </div>
+                <div className="flex items-center space-x-3 space-x-reverse">
+                  <FaCheckCircle className="text-primary-500 flex-shrink-0" size={22} />
+                  <span className="text-lg text-gray-800 dark:text-gray-200">فريق محترف ومدرب على أعلى مستوى</span>
+                </div>
+                <div className="flex items-center space-x-3 space-x-reverse">
+                  <FaCheckCircle className="text-primary-500 flex-shrink-0" size={22} />
+                  <span className="text-lg text-gray-800 dark:text-gray-200">جودة عالية في تنفيذ الخدمات</span>
+                </div>
+                <div className="flex items-center space-x-3 space-x-reverse">
+                  <FaCheckCircle className="text-primary-500 flex-shrink-0" size={22} />
+                  <span className="text-lg text-gray-800 dark:text-gray-200">التزام تام بالمواعيد المحددة</span>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
@@ -131,11 +146,13 @@ export default function About() {
               className="cursor-pointer"
               onClick={() => setSelectedImage('/imgs/essintial.jpg')}
             >
-              <img
-                src="/imgs/essintial.jpg"
-                alt="About Us"
-                className="rounded-2xl shadow-2xl w-full h-[600px] object-cover hover:shadow-3xl transition-shadow duration-300"
-              />
+              <div className="card p-4 bg-gray-50 dark:bg-gray-700/50">
+                <img
+                  src="/imgs/essintial.jpg"
+                  alt="About Us"
+                  className="rounded-xl shadow-lg w-full h-[550px] object-cover hover:shadow-2xl transition-shadow duration-300"
+                />
+              </div>
             </motion.div>
           </div>
 
@@ -147,14 +164,14 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-8 md:p-12"
           >
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center">
               إنجازاتنا
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {achievements.map((achievement, index) => (
                 <div key={index} className="flex items-start space-x-3 space-x-reverse">
-                  <FaCheckCircle className="text-primary-500 mt-1 flex-shrink-0" size={24} />
-                  <span className="text-lg text-gray-800 dark:text-gray-200">{achievement}</span>
+                  <FaCheckCircle className="text-primary-500 mt-1 flex-shrink-0" size={26} />
+                  <span className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed">{achievement}</span>
                 </div>
               ))}
             </div>
@@ -171,22 +188,22 @@ export default function About() {
           className="container-custom"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div variants={fadeInUp} className="card p-8">
-              <div className="bg-gradient-to-r from-primary-500 to-primary-600 w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6">
-                <FaEye size={32} />
+            <motion.div variants={fadeInUp} className="card p-10 h-full flex flex-col">
+              <div className="bg-gradient-to-r from-primary-500 to-primary-600 w-20 h-20 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
+                <FaEye size={38} />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">رؤيتنا</h3>
-              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">رؤيتنا</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] flex-grow">
                 أن نكون الخيار الأول والأكثر موثوقية في مجال خدمات التشغيل والصيانة والنظافة في المملكة العربية السعودية، من خلال تقديم خدمات متميزة تتسم بالجودة العالية والابتكار المستمر.
               </p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="card p-8">
-              <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6">
-                <FaBullseye size={32} />
+            <motion.div variants={fadeInUp} className="card p-10 h-full flex flex-col">
+              <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-20 h-20 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
+                <FaBullseye size={38} />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">رسالتنا</h3>
-              <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">رسالتنا</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] flex-grow">
                 تقديم حلول متكاملة واحترافية في مجال التشغيل والصيانة والنظافة تلبي احتياجات عملائنا وتتجاوز توقعاتهم، مع الالتزام بأعلى معايير الجودة والسلامة والاستدامة البيئية.
               </p>
             </motion.div>
@@ -214,15 +231,17 @@ export default function About() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="card p-8 text-center"
+                className="card p-8 text-center h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="text-primary-500 mb-4 flex justify-center">
-                  {value.icon}
+                <div className="text-primary-500 mb-5 flex justify-center">
+                  <div className="w-20 h-20 rounded-2xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center">
+                    {value.icon}
+                  </div>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                   {value.title}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-200 leading-[1.7] flex-grow">
                   {value.description}
                 </p>
               </motion.div>
@@ -231,68 +250,98 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* Gallery Section */}
-      <section ref={galleryRef} className="py-20 bg-gray-50 dark:bg-gray-900">
-        <motion.div
-          initial="hidden"
-          animate={galleryInView ? "visible" : "hidden"}
-          variants={staggerContainer}
-          className="container-custom"
-        >
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="section-title">{t.about.gallery_title}</h2>
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="section-title">ليه تختارنا؟</h2>
             <p className="section-subtitle">
-              {t.about.gallery_subtitle}
+              نقدم لك مجموعة من المميزات التي تجعلنا الخيار الأمثل
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {gallery.map((image, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer"
-                onClick={() => setSelectedImage(image)}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={image}
-                  alt={`Gallery ${index + 1}`}
-                  className="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
+          >
+            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
+              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-3 flex-shrink-0">
+                <FaAward className="text-primary-600 dark:text-primary-400" size={28} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">جودة عالية وتقييمات ممتازة</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">نلتزم بأعلى معايير الجودة في جميع خدماتنا</p>
+              </div>
+            </div>
+
+            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
+              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-3 flex-shrink-0">
+                <FaUsers className="text-secondary-600 dark:text-secondary-400" size={28} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">فريق متخصص ومدرب</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">فريق عمل محترف بخبرات واسعة في المجال</p>
+              </div>
+            </div>
+
+            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
+              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-3 flex-shrink-0">
+                <FaBullseye className="text-primary-600 dark:text-primary-400" size={28} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">أسعار منافسة</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">أفضل الأسعار مع الحفاظ على الجودة العالية</p>
+              </div>
+            </div>
+
+            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
+              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-3 flex-shrink-0">
+                <FaCheckCircle className="text-secondary-600 dark:text-secondary-400" size={28} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">التزام بالمواعيد</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">نحترم وقتك ونلتزم بالمواعيد المحددة</p>
+              </div>
+            </div>
+
+            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
+              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-3 flex-shrink-0">
+                <FaEye className="text-primary-600 dark:text-primary-400" size={28} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">استجابة سريعة</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">نستجيب لطلباتكم بسرعة وكفاءة عالية</p>
+              </div>
+            </div>
+
+            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
+              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-3 flex-shrink-0">
+                <FaAward className="text-secondary-600 dark:text-secondary-400" size={28} />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">خدمات شاملة</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">حلول متكاملة للتشغيل والصيانة والنظافة</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 backdrop-blur-sm"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <img
-            src={selectedImage}
-            alt="Gallery fullscreen"
-            className="max-w-full max-h-full object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+      
+
+      
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-primary-700 to-secondary-700 text-white">
         <div className="container-custom text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -300,13 +349,13 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
               {t.about.cta_title}
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
               {t.about.cta_description}
             </p>
-            <Link href="/contact" className="bg-white text-primary-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg inline-block">
+            <Link href="/contact" className="bg-white text-primary-600 hover:bg-gray-100 font-bold py-4 px-12 rounded-full text-lg transition-all transform hover:scale-105 shadow-2xl inline-block">
               {t.about.contact_us_btn}
             </Link>
           </motion.div>

@@ -1,10 +1,10 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import { useI18n } from '@/contexts/I18nContext'
-import { FaCog, FaBroom, FaTools, FaCheckCircle, FaStar, FaQuoteLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { FaCog, FaBroom, FaTools, FaCheckCircle, FaHeadset, FaCertificate, FaAward } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import StatsCounter from '@/components/StatsCounter'
 
@@ -28,7 +28,6 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }
 }
 
-// Counter animation hook
 const useCounter = (end: number, duration: number = 2000, inView: boolean) => {
   const [count, setCount] = useState(0)
 
@@ -72,30 +71,29 @@ export default function Home() {
 
   const services = [
     {
-      icon: <FaCog size={40} />,
-      title: t.services.operation.title,
-      description: t.services.operation.description,
-      image: '/imgs/Service1.jpg'
+      icon: <FaBroom size={32} />,
+      title: t.services.cleaning.title,
+      description: 'تنظيف شامل للمنشآت التجارية والسكنية',
+      image: '/imgs/Service3.jpg'
     },
     {
-      icon: <FaTools size={40} />,
+      icon: <FaTools size={32} />,
       title: t.services.maintenance.title,
-      description: t.services.maintenance.description,
+      description: 'صيانة دورية ووقائية لجميع الأنظمة',
       image: '/imgs/Service2.jpg'
     },
     {
-      icon: <FaBroom size={40} />,
-      title: t.services.cleaning.title,
-      description: t.services.cleaning.description,
-      image: '/imgs/Service3.jpg'
+      icon: <FaCog size={32} />,
+      title: t.services.operation.title,
+      description: 'إدارة وتشغيل المنشآت بكفاءة عالية',
+      image: '/imgs/essintial.jpg'
     }
   ]
 
   const stats = [
-    { number: '0+', label: t.stats.satisfied_clients },
-    { number: '1000+', label: t.stats.completed_projects },
-    { number: '15+', label: t.stats.years_experience },
-    { number: '100+', label: t.stats.professional_team }
+    { number: '0+', label: t.stats.satisfied_clients, icon: <FaCheckCircle size={32} /> },
+    { number: '1000+', label: t.stats.completed_projects, icon: <FaCog size={32} /> },
+    { number: '15+', label: t.stats.years_experience, icon: <FaAward size={32} /> }
   ]
 
   const testimonials = [
@@ -176,7 +174,7 @@ export default function Home() {
             alt="Hero Background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
         </div>
 
         {/* Floating shapes background */}
@@ -211,13 +209,13 @@ export default function Home() {
         >
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight relative"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight relative"
           >
             <span className="relative inline-block">
               {t.hero.title}
               <span className="absolute -inset-2 bg-primary-500/20 blur-2xl rounded-full -z-10"></span>
             </span>
-            <span className="block text-primary-400 mt-3 relative">
+            <span className="block text-primary-400 mt-5 relative">
               {t.hero.subtitle}
               <span className="absolute -inset-2 bg-primary-400/20 blur-3xl rounded-full -z-10"></span>
             </span>
@@ -225,7 +223,7 @@ export default function Home() {
           
           <motion.p
             variants={fadeInUp}
-            className="text-lg md:text-xl lg:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed opacity-95"
+            className="text-lg md:text-xl lg:text-2xl mb-14 max-w-3xl mx-auto leading-relaxed opacity-95"
           >
             {t.hero.description}
           </motion.p>
@@ -287,14 +285,18 @@ export default function Home() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
             >
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <img
-                  src="/imgs/hero2.jpg"
-                  alt="About Us"
-                  className="relative rounded-2xl shadow-2xl w-full h-[450px] lg:h-[500px] object-cover"
-                />
-              </div>
+              <Link href="/about" className="block">
+                <div className="relative group cursor-pointer">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                  <div className="relative rounded-2xl shadow-2xl w-full h-[550px] lg:h-[650px] overflow-hidden">
+                    <img
+                      src="/imgs/essintial.jpg"
+                      alt="About Us"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </Link>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="space-y-6">
@@ -318,6 +320,26 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+
+              {/* Key Strengths Row */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
+                <div className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+                  <FaCertificate className="text-primary-500 mx-auto mb-2" size={28} />
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">فريق محترف</p>
+                </div>
+                <div className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+                  <FaHeadset className="text-primary-500 mx-auto mb-2" size={28} />
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">استجابة سريعة</p>
+                </div>
+                <div className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+                  <FaAward className="text-primary-500 mx-auto mb-2" size={28} />
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">جودة عالية</p>
+                </div>
+                <div className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+                  <FaTools className="text-primary-500 mx-auto mb-2" size={28} />
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">معدات احترافية</p>
+                </div>
+              </div>
               
               <motion.div
                 whileHover={{ scale: 1.05, x: -5 }}
@@ -333,70 +355,76 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="py-32 bg-white dark:bg-gray-800 relative overflow-hidden">
-        {/* Decorative background */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-32 left-[8%] w-72 h-72 bg-primary-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-[12%] w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl"></div>
-        </div>
-
+      <section ref={servicesRef} className="py-24 bg-white dark:bg-gray-800">
         <motion.div
           initial="hidden"
           animate={servicesInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="container-custom relative z-10"
+          className="container mx-auto max-w-7xl px-4"
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="section-title">{t.services.title}</h2>
-            <p className="section-subtitle max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+              {t.services.title}
+            </h2>
+            <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full mb-4"></div>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               {t.services.subtitle}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 p-6 group border border-gray-100 dark:border-gray-700 relative overflow-hidden"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-200 dark:border-gray-600"
               >
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
+                  />
+                </div>
                 
-                <div className="relative z-10">
-                  <div className="mb-6 overflow-hidden rounded-xl shadow-lg">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-                  
-                  <div className="text-primary-500 mb-5 flex justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                <div className="p-6">
+                  <div className="text-primary-500 mb-4 flex justify-start">
                     {service.icon}
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-700 dark:text-gray-200 text-center leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
                     {service.description}
                   </p>
+
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-medium text-sm transition-colors"
+                  >
+                    {t.common.learn_more}
+                    <span>←</span>
+                  </Link>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <motion.div variants={fadeInUp} className="text-center mt-14">
+          <motion.div variants={fadeInUp} className="text-center">
             <motion.div
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href="/services" className="btn-primary inline-block shadow-xl shadow-primary-500/30">
+              <Link 
+                href="/services" 
+                className="inline-flex items-center gap-3 bg-primary-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
                 عرض جميع الخدمات
+                <span>←</span>
               </Link>
             </motion.div>
           </motion.div>
@@ -404,7 +432,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section ref={statsRef} className="py-24 bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-600 text-white relative overflow-hidden">
+      <section ref={statsRef} className="py-16 bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-600 text-white relative overflow-hidden">
         {/* Animated background shapes */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -431,7 +459,7 @@ export default function Home() {
           variants={staggerContainer}
           className="container-custom relative z-10"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
             {stats.map((stat, index) => {
               // For the first stat (satisfied clients), use StatsCounter
               const isFirstStat = index === 0
@@ -449,7 +477,10 @@ export default function Home() {
                   className="text-center relative"
                 >
                   <div className="absolute inset-0 bg-white/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                  <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <div className="flex justify-center mb-4 opacity-90">
+                      {stat.icon}
+                    </div>
                     {isFirstStat ? (
                       <StatsCounter duration={2000} />
                     ) : (
@@ -467,27 +498,11 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-white dark:bg-gray-800 relative overflow-hidden">
-        {/* Animated background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{ 
-              scale: [1, 1.5, 1],
-              x: [0, 100, 0],
-              y: [0, -50, 0]
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/5 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{ 
-              scale: [1, 1.3, 1],
-              x: [0, -100, 0],
-              y: [0, 50, 0]
-            }}
-            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary-500/5 rounded-full blur-3xl"
-          />
+      <section className="py-32 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+        {/* Pattern background */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary-500/5 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container-custom text-center relative z-10">
@@ -498,7 +513,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <motion.h2 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 relative inline-block text-gray-900 dark:text-white"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 relative inline-block text-gray-900 dark:text-white"
               whileInView={{ scale: [0.9, 1] }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
@@ -507,7 +522,7 @@ export default function Home() {
               <span className="absolute -inset-4 bg-primary-500/10 blur-2xl rounded-full -z-10"></span>
             </motion.h2>
             <motion.p 
-              className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-gray-700 dark:text-gray-200"
+              className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed text-gray-700 dark:text-gray-200"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -516,7 +531,6 @@ export default function Home() {
               تواصل معنا اليوم واحصل على استشارة مجانية لخدماتنا المتميزة
             </motion.p>
             <motion.div 
-              className="flex flex-col sm:flex-row gap-5 justify-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -526,17 +540,9 @@ export default function Home() {
                 whileHover={{ scale: 1.08, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link href="/contact" className="bg-primary-600 text-white hover:bg-primary-700 font-bold py-4 px-10 rounded-xl transition-all shadow-2xl inline-block">
+                <Link href="/contact" className="bg-primary-600 text-white hover:bg-primary-700 font-bold py-5 px-12 rounded-xl transition-all shadow-2xl inline-block text-lg">
                   اتصل بنا الآن
                 </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.08, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <a href="https://wa.me/966557221833?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85" target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-2xl inline-block">
-                  تواصل عبر واتساب
-                </a>
               </motion.div>
             </motion.div>
           </motion.div>
