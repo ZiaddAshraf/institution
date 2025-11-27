@@ -41,17 +41,28 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to your backend
-    // For now, we'll just simulate a successful submission
+    setSubmitStatus('idle')
+    
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to send email')
+      }
+
       setSubmitStatus('success')
       setFormData({ name: '', email: '', phone: '', service: '', message: '' })
       
       // Reset success message after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000)
     } catch (error) {
+      console.error('Error submitting form:', error)
       setSubmitStatus('error')
       setTimeout(() => setSubmitStatus('idle'), 5000)
     }
@@ -110,7 +121,7 @@ export default function Contact() {
     {
       icon: <FaFacebook size={24} />,
       name: 'Facebook',
-      link: 'https://facebook.com',
+      link: 'https://www.facebook.com/share/1Dg7WWQbYZ/',
       color: 'hover:bg-blue-600'
     },
     {

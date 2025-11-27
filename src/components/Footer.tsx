@@ -96,7 +96,7 @@ const Footer = () => {
               <h5 className="text-lg font-semibold mb-4">{t.footer.follow_us}</h5>
               <div className="flex gap-3">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/share/1Dg7WWQbYZ/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-800 hover:bg-primary-500 p-3 rounded-lg transition-all hover:scale-110 shadow-md"

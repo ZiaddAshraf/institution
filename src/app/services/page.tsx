@@ -136,42 +136,51 @@ export default function ServicesPage() {
             <div className="w-24 h-1 bg-gradient-to-r from-[#00A6A6] to-[#0E87A4] mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="space-y-12">
             {featuredServices.map((service, index) => (
               <div
                 key={service.id}
-                className="group bg-white dark:bg-gray-800 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden transform hover:-translate-y-3 animate-fade-in"
+                className="group bg-white dark:bg-gray-800 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden animate-fade-in"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div 
-                  className="relative h-[500px] overflow-hidden cursor-pointer"
-                  onClick={() => setSelectedImage(service.image)}
-                >
-                  <Image
-                    src={service.image}
-                    alt={isRTL ? service.title : service.titleEn}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <span className="text-6xl mb-3 inline-block">{service.icon}</span>
-                    <h3 className="text-3xl font-bold text-white drop-shadow-lg">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                  <div 
+                    className="relative h-[500px] lg:h-[600px] overflow-hidden cursor-pointer bg-gray-100 dark:bg-gray-700"
+                    onClick={() => setSelectedImage(service.image)}
+                  >
+                    <Image
+                      src={service.image}
+                      alt={isRTL ? service.title : service.titleEn}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none"></div>
+                    <div className="absolute bottom-6 left-6 right-6 lg:hidden">
+                      <span className="text-5xl mb-2 inline-block">{service.icon}</span>
+                      <h3 className="text-2xl font-bold text-white drop-shadow-lg">
+                        {isRTL ? service.title : service.titleEn}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="p-8 lg:p-12 flex flex-col justify-center">
+                    <span className="text-6xl mb-4 inline-block hidden lg:block">{service.icon}</span>
+                    <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6 hidden lg:block">
                       {isRTL ? service.title : service.titleEn}
                     </h3>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 lg:hidden">
+                      {isRTL ? service.title : service.titleEn}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8 text-lg lg:text-xl">
+                      {isRTL ? service.description : service.descriptionEn}
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-3 bg-gradient-to-r from-[#00A6A6] to-[#0E87A4] text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-fit"
+                    >
+                      {isRTL ? 'اطلب الخدمة' : 'Request Service'}
+                      <span className={`transform ${isRTL ? 'rotate-180' : ''}`}>→</span>
+                    </Link>
                   </div>
-                </div>
-                <div className="p-8">
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8 text-xl">
-                    {isRTL ? service.description : service.descriptionEn}
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-3 bg-gradient-to-r from-[#00A6A6] to-[#0E87A4] text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                  >
-                    {isRTL ? 'اطلب الخدمة' : 'Request Service'}
-                    <span className={`transform ${isRTL ? 'rotate-180' : ''}`}>→</span>
-                  </Link>
                 </div>
               </div>
             ))}
@@ -240,7 +249,7 @@ export default function ServicesPage() {
               {isRTL ? 'تواصل معنا' : 'Contact Us'}
             </Link>
             <a
-              href="https://wa.me/966500000000"
+              href="https://wa.me/966557221833?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-green-600 transition-all duration-300 shadow-2xl hover:scale-110 hover:shadow-3xl transform flex items-center gap-3"

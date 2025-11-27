@@ -62,7 +62,7 @@ export default function Home() {
       icon: <FaCog size={32} />,
       title: t.services.operation.title,
       description: 'إدارة وتشغيل المنشآت بكفاءة عالية',
-      image: '/imgs/essintial.jpg'
+      image: '/imgs/Service4.png'
     }
   ]
 
@@ -362,42 +362,43 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-20">
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.25 }}
-                className="group bg-white dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-200 dark:border-gray-600"
+                whileHover={{ y: -10, scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+                className="group bg-white dark:bg-gray-700 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-200 dark:border-gray-600"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-96 overflow-hidden bg-white dark:bg-gray-800">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 
-                <div className="p-6">
-                  <div className="text-primary-500 mb-4 flex justify-start">
+                <div className="p-10">
+                  <div className="text-primary-500 mb-6 flex justify-start">
                     {service.icon}
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-7">
                     {service.description}
                   </p>
 
                   <Link
                     href="/services"
-                    className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-medium text-sm transition-colors"
+                    className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-bold text-lg transition-colors group-hover:gap-4"
                   >
                     {t.common.learn_more}
-                    <span>←</span>
+                    <span className="transform group-hover:translate-x-2 transition-transform">←</span>
                   </Link>
                 </div>
               </motion.div>
