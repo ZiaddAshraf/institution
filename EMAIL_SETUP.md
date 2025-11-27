@@ -9,11 +9,13 @@ The contact form is now configured to send emails to **ziaddd155@gmail.com** whe
 To enable email sending, you need to generate a Gmail App Password:
 
 ### Step 1: Enable 2-Step Verification (if not already enabled)
+
 1. Go to your Google Account: https://myaccount.google.com/security
 2. Click on "2-Step Verification"
 3. Follow the prompts to enable it
 
 ### Step 2: Generate App Password
+
 1. Go to: https://myaccount.google.com/apppasswords
 2. Sign in with your Gmail account: **ziaddd155@gmail.com**
 3. In the "Select app" dropdown, choose **Mail**
@@ -23,17 +25,21 @@ To enable email sending, you need to generate a Gmail App Password:
 7. You'll see a 16-character password (e.g., `abcd efgh ijkl mnop`)
 
 ### Step 3: Add the Password to Your Project
+
 1. Open the file: `.env.local` (in the root of your project)
 2. Replace `your-16-character-app-password-here` with the password you just generated
 3. Remove any spaces from the password (use as one continuous string)
 
 Example:
+
 ```
 EMAIL_PASSWORD=abcdefghijklmnop
 ```
 
 ### Step 4: Restart Your Development Server
+
 After adding the password, restart your Next.js server:
+
 ```bash
 # Stop the current server (Ctrl+C)
 # Then restart it:
@@ -43,12 +49,14 @@ npm run dev
 ## 📧 Email Features
 
 When a user submits the contact form, you'll receive:
+
 - **To:** ziaddd155@gmail.com
 - **Subject:** رسالة جديدة من موقع طريق الخير - [Customer Name]
 - **Content:** Beautiful HTML email with all form details in Arabic
 - **Reply-To:** Customer's email (so you can reply directly)
 
 The email includes:
+
 - Customer name
 - Customer email
 - Customer phone
@@ -59,6 +67,7 @@ The email includes:
 ## 🧪 Testing
 
 After setup, test the contact form:
+
 1. Fill out the form on the contact page
 2. Submit it
 3. Check your inbox at ziaddd155@gmail.com
@@ -78,6 +87,7 @@ If you don't set up the App Password, the form will still work on the frontend, 
 ## 🆘 Troubleshooting
 
 If emails aren't being sent:
+
 1. Check that 2-Step Verification is enabled on your Google account
 2. Verify the App Password is correct in `.env.local`
 3. Make sure there are no spaces in the password
