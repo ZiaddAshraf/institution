@@ -1,62 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server'
+import fs from 'fs'
+import path from 'path'
 
 const COOKIE_NAME = 'gw_visited';
-const REDIS_KEY = 'goodwill:satisfied_clients';
-const UPSTASH_URL = process.env.UPSTASH_REDIS_REST_URL;
-const UPSTASH_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+const COUNTER_FILE = path.join(process.cwd(), 'data', 'counter.json');
 
-async function getRedisCount() {
-  const response = await fetch(`${UPSTASH_URL}/get/${REDIS_KEY}`, {
-    headers: {
-      Authorization: `Bearer ${UPSTASH_TOKEN}`,
-    },
-    cache: 'no-store',
-  });
-  const data = await response.json();
-  if (data.result === null) {
-    await fetch(`${UPSTASH_URL}/set/${REDIS_KEY}/0`, {
-      headers: {
-        Authorization: `Bearer ${UPSTASH_TOKEN}`,
-      },
-    });
+function getCount() {
+  try {
+    if (!fs.existsSync(COUNTER_FILE)) {
+      // Create directory if it doesn't exist
+      const dir = path.dirname(COUNTER_FILE);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFileSync(COUNTER_FILE, JSON.stringify({ count: 0 }));
+      return 0;
+    }
+    const data = fs.readFileSync(COUNTER_FILE, 'utf-8');
+    const parsed = JSON.parse(data);
+    return parsed.count || 0;
+  } catch (error) {
+    console.error('Error reading counter:', error);
     return 0;
   }
-  return parseInt(data.result, 10);
 }
 
-async function incrementRedisCount() {
-  const response = await fetch(`${UPSTASH_URL}/incr/${REDIS_KEY}`, {
-    headers: {
-      Authorization: `Bearer ${UPSTASH_TOKEN}`,
-    },
-  });
-  const data = await response.json();
-  return data.result;
+function incrementCount() {
+  try {
+    const currentCount = getCount();
+    const newCount = currentCount + 1;
+    fs.writeFileSync(COUNTER_FILE, JSON.stringify({ count: newCount }));
+    return newCount;
+  } catch (error) {
+    console.error('Error incrementing counter:', error);
+    return getCount();
+  }
 }
 
 export async function GET(request: NextRequest) {
   try {
-    if (!UPSTASH_URL || !UPSTASH_TOKEN) {
-      return NextResponse.json(
-        { error: 'Upstash Redis is not configured. Please set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN in your environment variables.', count: 0 },
-        { status: 500 }
-      );
-    }
-
     const cookieExists = request.cookies.has(COOKIE_NAME);
     let count;
     let shouldIncrement = !cookieExists;
 
     if (shouldIncrement) {
-      count = await incrementRedisCount();
+      count = incrementCount();
     } else {
-      count = await getRedisCount();
+      count = getCount();
     }
 
     const response = NextResponse.json({
       count,
       incremented: shouldIncrement,
-      storage: 'redis',
+      storage: 'file',
     });
 
     if (shouldIncrement) {
