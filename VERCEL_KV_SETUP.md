@@ -1,6 +1,7 @@
 # Vercel KV Setup for Counter Storage
 
 ## Why Vercel KV?
+
 File-based storage doesn't work on Vercel because the filesystem is read-only in production. Vercel KV provides persistent Redis-based storage that works perfectly for counters and small data.
 
 ## Setup Steps
@@ -58,6 +59,7 @@ Or trigger a redeploy from Vercel dashboard.
 ## Testing
 
 After deployment, visit your site and check:
+
 1. Counter displays correctly
 2. Refreshing the page doesn't increment (cookie-based tracking)
 3. Check Vercel logs to see storage type: `"storage": "kv"`
@@ -65,6 +67,7 @@ After deployment, visit your site and check:
 ## Pricing
 
 Vercel KV Free Tier includes:
+
 - 30,000 commands per month
 - 256 MB storage
 - Perfect for this counter use case! 🎉
@@ -72,6 +75,7 @@ Vercel KV Free Tier includes:
 ## Troubleshooting
 
 If counter still shows 0:
+
 1. Check Vercel logs for errors
 2. Verify environment variables are set in Vercel dashboard
 3. Make sure KV database is connected to your project
