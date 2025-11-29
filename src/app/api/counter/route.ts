@@ -11,10 +11,32 @@ interface CounterData {
   lastIncrement?: string;
 }
 
-function getCounterData(): CounterData {
+// Dynamic import for Vercel KV to avoid errors in local development
+let kv: any = null;
+const isProduction = process.env.NODE_ENV === 'production';
+
+async function initKV() {
+  if (isProduction && !kv) {
+    try {
+      const kvModule = await import('@vercel/kv');
+      kv = kvModule.kv;
+    } catch (error) {
+      console.log('KV not available, using file storage');
+    }
+  }
+}
+
+async function getCounterData(): Promise<CounterData> {
   try {
+    // Try KV first (production)
+    if (kv) {
+      const count = await kv.get<number>('counter') || 0;
+      const lastIncrement = await kv.get<string>('counter_last_increment') || new Date().toISOString();
+      return { count, lastIncrement };
+    }
+    
+    // Fallback to file storage (local development)
     if (!fs.existsSync(COUNTER_FILE)) {
-      // Create directory if it doesn't exist
       const dir = path.dirname(COUNTER_FILE);
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
@@ -35,9 +57,9 @@ function getCounterData(): CounterData {
   }
 }
 
-function checkAndAutoIncrement(): CounterData {
+async function checkAndAutoIncrement(): Promise<CounterData> {
   try {
-    const counterData = getCounterData();
+    const counterData = await getCounterData();
     const lastIncrementTime = new Date(counterData.lastIncrement!).getTime();
     const currentTime = Date.now();
     const timeDiff = currentTime - lastIncrementTime;
@@ -52,7 +74,15 @@ function checkAndAutoIncrement(): CounterData {
         count: newCount,
         lastIncrement: new Date().toISOString()
       };
-      fs.writeFileSync(COUNTER_FILE, JSON.stringify(newData));
+      
+      // Save to KV or file
+      if (kv) {
+        await kv.set('counter', newCount);
+        await kv.set('counter_last_increment', newData.lastIncrement);
+      } else {
+        fs.writeFileSync(COUNTER_FILE, JSON.stringify(newData));
+      }
+      
       console.log(`Auto-incremented counter by ${periodsElapsed}. New count: ${newCount}`);
       return newData;
     }
@@ -60,17 +90,25 @@ function checkAndAutoIncrement(): CounterData {
     return counterData;
   } catch (error) {
     console.error('Error in auto-increment:', error);
-    return getCounterData();
+    return await getCounterData();
   }
 }
 
-function incrementCount(counterData: CounterData): CounterData {
+async function incrementCount(counterData: CounterData): Promise<CounterData> {
   try {
     const newData = {
       count: counterData.count + 1,
       lastIncrement: counterData.lastIncrement
     };
-    fs.writeFileSync(COUNTER_FILE, JSON.stringify(newData));
+    
+    // Save to KV or file
+    if (kv) {
+      await kv.set('counter', newData.count);
+      await kv.set('counter_last_increment', newData.lastIncrement);
+    } else {
+      fs.writeFileSync(COUNTER_FILE, JSON.stringify(newData));
+    }
+    
     return newData;
   } catch (error) {
     console.error('Error incrementing counter:', error);
@@ -80,26 +118,28 @@ function incrementCount(counterData: CounterData): CounterData {
 
 export async function GET(request: NextRequest) {
   try {
+    // Initialize KV if in production
+    await initKV();
+    
     // First, check and perform auto-increment if 24 hours have passed
-    let counterData = checkAndAutoIncrement();
+    let counterData = await checkAndAutoIncrement();
     
     const cookieExists = request.cookies.has(COOKIE_NAME);
     let shouldIncrementForVisitor = !cookieExists;
 
     // Increment for new visitor (on top of any auto-increment)
     if (shouldIncrementForVisitor) {
-      counterData = incrementCount(counterData);
+      counterData = await incrementCount(counterData);
     }
 
     const response = NextResponse.json({
       count: counterData.count,
       incremented: shouldIncrementForVisitor,
-      storage: 'file',
+      storage: kv ? 'kv' : 'file',
       lastIncrement: counterData.lastIncrement,
     });
 
     if (shouldIncrementForVisitor) {
-      const isProduction = process.env.NODE_ENV === 'production';
       response.cookies.set(COOKIE_NAME, 'true', {
         maxAge: 31536000,
         path: '/',
