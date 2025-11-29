@@ -1,8 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useI18n } from '@/contexts/I18nContext'
 import { FaCog, FaBroom, FaTools, FaCheckCircle, FaHeadset, FaCertificate, FaAward } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
@@ -39,29 +40,24 @@ export default function Home() {
   const [servicesRef, servicesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [statsRef, statsInView] = useInView({ triggerOnce: true, threshold: 0.1 })
-  const [testimonialsRef, testimonialsInView] = useInView({ triggerOnce: true, threshold: 0.1 })
-
-  // Testimonial carousel state
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-  const [direction, setDirection] = useState(0)
 
   const services = [
     {
       icon: <FaBroom size={32} />,
       title: t.services.cleaning.title,
-      description: 'تنظيف شامل للمنشآت التجارية والسكنية',
+      description: t.home.cleaning_description,
       image: '/imgs/Service3.jpg'
     },
     {
       icon: <FaTools size={32} />,
       title: t.services.maintenance.title,
-      description: 'صيانة دورية ووقائية لجميع الأنظمة',
+      description: t.home.maintenance_description,
       image: '/imgs/Service2.jpg'
     },
     {
       icon: <FaCog size={32} />,
       title: t.services.operation.title,
-      description: 'إدارة وتشغيل المنشآت بكفاءة عالية',
+      description: t.home.operation_description,
       image: '/imgs/Service4.png'
     }
   ]
@@ -70,27 +66,6 @@ export default function Home() {
     { number: '0+', label: t.stats.satisfied_clients, icon: <FaCheckCircle size={32} /> },
     { number: '1000+', label: t.stats.completed_projects, icon: <FaCog size={32} /> },
     { number: '15+', label: t.stats.years_experience, icon: <FaAward size={32} /> }
-  ]
-
-  const testimonials = [
-    {
-      name: t.testimonials.client1.name,
-      position: t.testimonials.client1.position,
-      text: t.testimonials.client1.text,
-      rating: 5
-    },
-    {
-      name: t.testimonials.client2.name,
-      position: t.testimonials.client2.position,
-      text: t.testimonials.client2.text,
-      rating: 5
-    },
-    {
-      name: t.testimonials.client3.name,
-      position: t.testimonials.client3.position,
-      text: t.testimonials.client3.text,
-      rating: 5
-    }
   ]
 
   useEffect(() => {
@@ -102,55 +77,9 @@ export default function Home() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Auto-slide testimonials
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDirection(1)
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-
-    return () => clearInterval(timer)
-  }, [testimonials.length])
-
   // Show loading screen on initial render
   if (isLoading) {
     return <LoadingSpinner />
-  }
-
-  const nextTestimonial = () => {
-    setDirection(1)
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-  }
-
-  const prevTestimonial = () => {
-    setDirection(-1)
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.8
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.8,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
-    })
   }
 
   return (
@@ -159,10 +88,12 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/imgs/hero1.jpg"
             alt="Hero Background"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
         </div>
@@ -199,7 +130,7 @@ export default function Home() {
         >
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight relative"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight relative"
           >
             <span className="relative inline-block">
               {t.hero.title}
@@ -279,10 +210,11 @@ export default function Home() {
                 <div className="relative group cursor-pointer">
                   <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
                   <div className="relative rounded-2xl shadow-2xl w-full h-[550px] lg:h-[650px] overflow-hidden">
-                    <img
+                    <Image
                       src="/imgs/essintial.jpg"
                       alt="About Us"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </div>
                 </div>
@@ -315,19 +247,19 @@ export default function Home() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
                 <div className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
                   <FaCertificate className="text-primary-500 mx-auto mb-2" size={28} />
-                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">فريق محترف</p>
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">{t.home.quality_team}</p>
                 </div>
                 <div className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
                   <FaHeadset className="text-primary-500 mx-auto mb-2" size={28} />
-                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">استجابة سريعة</p>
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">{t.home.quick_response}</p>
                 </div>
                 <div className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
                   <FaAward className="text-primary-500 mx-auto mb-2" size={28} />
-                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">جودة عالية</p>
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">{t.home.high_quality}</p>
                 </div>
                 <div className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
                   <FaTools className="text-primary-500 mx-auto mb-2" size={28} />
-                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">معدات احترافية</p>
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">{t.home.professional_equipment}</p>
                 </div>
               </div>
               
@@ -371,14 +303,17 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
                 className="group bg-white dark:bg-gray-700 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-200 dark:border-gray-600"
               >
-                <div className="relative h-96 overflow-hidden bg-white dark:bg-gray-800">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
+                <Link href="/services" className="block">
+                  <div className="relative h-96 overflow-hidden bg-white dark:bg-gray-800">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover md:object-contain group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                </Link>
                 
                 <div className="p-10">
                   <div className="text-primary-500 mb-6 flex justify-start">
@@ -414,7 +349,7 @@ export default function Home() {
                 href="/services" 
                 className="inline-flex items-center gap-3 bg-primary-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                عرض جميع الخدمات
+                {t.home.view_all_services}
                 <span>←</span>
               </Link>
             </motion.div>
@@ -505,7 +440,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              هل أنت جاهز للبدء معنا؟
+              {t.home.ready_to_start}
               <span className="absolute -inset-4 bg-primary-500/10 blur-2xl rounded-full -z-10"></span>
             </motion.h2>
             <motion.p 
@@ -515,7 +450,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              تواصل معنا اليوم واحصل على استشارة مجانية لخدماتنا المتميزة
+              {t.home.get_consultation}
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -528,7 +463,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link href="/contact" className="bg-primary-600 text-white hover:bg-primary-700 font-bold py-5 px-12 rounded-xl transition-all shadow-2xl inline-block text-lg">
-                  اتصل بنا الآن
+                  {t.home.contact_now}
                 </Link>
               </motion.div>
             </motion.div>

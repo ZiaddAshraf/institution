@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useI18n } from '@/contexts/I18nContext'
 import { FaEye, FaBullseye, FaAward, FaUsers, FaCheckCircle } from 'react-icons/fa'
 
@@ -84,10 +85,10 @@ export default function About() {
           className="container-custom relative z-10"
         >
           <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 text-center">
-            من نحن
+            {t.about.title}
           </motion.h1>
           <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-center max-w-3xl mx-auto">
-            تعرف على هويتنا وأهدافنا في خدمة عملائنا
+            {t.about.subtitle}
           </motion.p>
         </motion.div>
       </section>
@@ -103,37 +104,37 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                مؤسسة طريق الخير للتشغيل والصيانة
+                {t.about.company_title}
               </h2>
               <p className="text-xl font-semibold text-primary-600 dark:text-primary-400 mb-6 leading-relaxed">
-                شريككم الموثوق في تقديم خدمات التشغيل والصيانة والنظافة للمنشآت التجارية والسكنية
+                {t.about.partner_title}
               </p>
               <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] mb-4">
-                تأسست مؤسسة طريق الخير بهدف تقديم خدمات متميزة في مجال التشغيل والصيانة والنظافة للمنشآت التجارية والسكنية في المملكة العربية السعودية.
+                {t.about.description_p1}
               </p>
               <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] mb-4">
-                منذ انطلاقتنا، ونحن نسعى لتحقيق التميز في كل ما نقدمه، مستندين على فريق عمل محترف ومدرب، وأحدث المعدات والتقنيات.
+                {t.about.description_p2}
               </p>
               <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] mb-6">
-                نفخر بكوننا الشريك الموثوق لأكثر من 500 عميل في مختلف القطاعات، ونلتزم بتقديم خدمات تفوق توقعاتهم.
+                {t.about.description_p3}
               </p>
               
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 space-x-reverse">
                   <FaCheckCircle className="text-primary-500 flex-shrink-0" size={22} />
-                  <span className="text-lg text-gray-800 dark:text-gray-200">خبرة واسعة في مجال التنظيف و التشغيل والصيانة</span>
+                  <span className="text-lg text-gray-800 dark:text-gray-200">{t.about.feature_experience}</span>
                 </div>
                 <div className="flex items-center space-x-3 space-x-reverse">
                   <FaCheckCircle className="text-primary-500 flex-shrink-0" size={22} />
-                  <span className="text-lg text-gray-800 dark:text-gray-200">فريق محترف ومدرب على أعلى مستوى</span>
+                  <span className="text-lg text-gray-800 dark:text-gray-200">{t.about.feature_professional_team}</span>
                 </div>
                 <div className="flex items-center space-x-3 space-x-reverse">
                   <FaCheckCircle className="text-primary-500 flex-shrink-0" size={22} />
-                  <span className="text-lg text-gray-800 dark:text-gray-200">جودة عالية في تنفيذ الخدمات</span>
+                  <span className="text-lg text-gray-800 dark:text-gray-200">{t.about.feature_high_quality}</span>
                 </div>
                 <div className="flex items-center space-x-3 space-x-reverse">
                   <FaCheckCircle className="text-primary-500 flex-shrink-0" size={22} />
-                  <span className="text-lg text-gray-800 dark:text-gray-200">التزام تام بالمواعيد المحددة</span>
+                  <span className="text-lg text-gray-800 dark:text-gray-200">{t.about.feature_commitment}</span>
                 </div>
               </div>
             </motion.div>
@@ -147,11 +148,14 @@ export default function About() {
               onClick={() => setSelectedImage('/imgs/essintial.jpg')}
             >
               <div className="card p-4 bg-gray-50 dark:bg-gray-700/50">
-                <img
-                  src="/imgs/essintial.jpg"
-                  alt="About Us"
-                  className="rounded-xl shadow-lg w-full h-[550px] object-cover hover:shadow-2xl transition-shadow duration-300"
-                />
+                <div className="relative w-full h-[550px]">
+                  <Image
+                    src="/imgs/essintial.jpg"
+                    alt="About Us"
+                    fill
+                    className="rounded-xl shadow-lg object-cover hover:shadow-2xl transition-shadow duration-300"
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
@@ -165,7 +169,7 @@ export default function About() {
             className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-8 md:p-12"
           >
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center">
-              إنجازاتنا
+              {t.about.achievements_title}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {achievements.map((achievement, index) => (
@@ -192,9 +196,9 @@ export default function About() {
               <div className="bg-gradient-to-r from-primary-500 to-primary-600 w-20 h-20 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
                 <FaEye size={38} />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">رؤيتنا</h3>
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">{t.about.vision_title}</h3>
               <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] flex-grow">
-                أن نكون الخيار الأول والأكثر موثوقية في مجال خدمات التشغيل والصيانة والنظافة في المملكة العربية السعودية، من خلال تقديم خدمات متميزة تتسم بالجودة العالية والابتكار المستمر.
+                {t.about.vision_text}
               </p>
             </motion.div>
 
@@ -202,9 +206,9 @@ export default function About() {
               <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-20 h-20 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
                 <FaBullseye size={38} />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">رسالتنا</h3>
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">{t.about.mission_title}</h3>
               <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] flex-grow">
-                تقديم حلول متكاملة واحترافية في مجال التشغيل والصيانة والنظافة تلبي احتياجات عملائنا وتتجاوز توقعاتهم، مع الالتزام بأعلى معايير الجودة والسلامة والاستدامة البيئية.
+                {t.about.mission_text}
               </p>
             </motion.div>
           </div>
@@ -260,9 +264,9 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="section-title">ليه تختارنا؟</h2>
+            <h2 className="section-title">{t.about.why_choose_title}</h2>
             <p className="section-subtitle">
-              نقدم لك مجموعة من المميزات التي تجعلنا الخيار الأمثل
+              {t.about.why_choose_subtitle}
             </p>
           </motion.div>
 
@@ -278,8 +282,8 @@ export default function About() {
                 <FaAward className="text-primary-600 dark:text-primary-400" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">جودة عالية وتقييمات ممتازة</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">نلتزم بأعلى معايير الجودة في جميع خدماتنا</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_quality}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_quality_desc}</p>
               </div>
             </div>
 
@@ -288,8 +292,8 @@ export default function About() {
                 <FaUsers className="text-secondary-600 dark:text-secondary-400" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">فريق متخصص ومدرب</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">فريق عمل محترف بخبرات واسعة في المجال</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_team}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_team_desc}</p>
               </div>
             </div>
 
@@ -298,8 +302,8 @@ export default function About() {
                 <FaBullseye className="text-primary-600 dark:text-primary-400" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">أسعار منافسة</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">أفضل الأسعار مع الحفاظ على الجودة العالية</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_pricing}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_pricing_desc}</p>
               </div>
             </div>
 
@@ -308,8 +312,8 @@ export default function About() {
                 <FaCheckCircle className="text-secondary-600 dark:text-secondary-400" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">التزام بالمواعيد</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">نحترم وقتك ونلتزم بالمواعيد المحددة</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_punctuality}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_punctuality_desc}</p>
               </div>
             </div>
 
@@ -318,8 +322,8 @@ export default function About() {
                 <FaEye className="text-primary-600 dark:text-primary-400" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">استجابة سريعة</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">نستجيب لطلباتكم بسرعة وكفاءة عالية</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_response}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_response_desc}</p>
               </div>
             </div>
 
@@ -328,8 +332,8 @@ export default function About() {
                 <FaAward className="text-secondary-600 dark:text-secondary-400" size={28} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">خدمات شاملة</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">حلول متكاملة للتشغيل والصيانة والنظافة</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_comprehensive}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_comprehensive_desc}</p>
               </div>
             </div>
           </motion.div>

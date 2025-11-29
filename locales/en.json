@@ -26,17 +26,47 @@
       "feature2": "Using the latest technologies and equipment",
       "feature3": "Full commitment to quality and safety standards",
       "feature4": "24/7 excellent customer service"
-    }
+    },
+    "cleaning_description": "Comprehensive cleaning for commercial and residential facilities",
+    "maintenance_description": "Periodic and preventive maintenance for all systems",
+    "operation_description": "Efficient facility management and operation",
+    "view_all_services": "View All Services",
+    "ready_to_start": "Are You Ready to Start with Us?",
+    "get_consultation": "Contact us today and get a free consultation for our distinguished services",
+    "contact_now": "Contact Us Now",
+    "quality_team": "Professional Team",
+    "quick_response": "Quick Response",
+    "high_quality": "High Quality",
+    "professional_equipment": "Professional Equipment"
   },
   "about": {
     "title": "About Us",
-    "subtitle": "Learn about our story, vision, and mission in serving our valued clients",
-    "partner_title": "Your Trusted Partner in Comprehensive Services",
+    "subtitle": "Learn about our identity and goals in serving our clients",
+    "partner_title": "Your trusted partner in providing operation, maintenance, and cleaning services for commercial and residential facilities",
     "company_title": "Goodwill Foundation for Operation and Maintenance",
     "description_p1": "Goodwill Foundation for Operation and Maintenance was established with the aim of providing excellent services in operation, maintenance, and cleaning for commercial and residential facilities in Saudi Arabia.",
     "description_p2": "Since our inception, we have been striving for excellence in everything we offer, relying on a professional and trained workforce, latest equipment and technologies, and best practices in our field.",
-    "description_p3": "We are proud to be the trusted partner of more than 500 clients across various sectors, and we are committed to providing services that exceed their expectations and achieve their complete satisfaction.",
+    "description_p3": "We are proud to be the trusted partner of more than 500 clients across various sectors, and we are committed to providing services that exceed their expectations.",
     "achievements_title": "Our Achievements",
+    "feature_experience": "Extensive experience in cleaning, operation, and maintenance",
+    "feature_professional_team": "Professional team trained to the highest standards",
+    "feature_high_quality": "High quality in service execution",
+    "feature_commitment": "Full commitment to specified deadlines",
+    "why_choose_title": "Why Choose Us?",
+    "why_choose_subtitle": "We offer a set of advantages that make us the optimal choice",
+    "advantage_quality": "High quality and excellent ratings",
+    "advantage_quality_desc": "We commit to the highest quality standards in all our services",
+    "advantage_team": "Specialized and trained team",
+    "advantage_team_desc": "Professional work team with extensive experience in the field",
+    "advantage_pricing": "Competitive pricing",
+    "advantage_pricing_desc": "Best prices while maintaining high quality",
+    "advantage_punctuality": "Commitment to deadlines",
+    "advantage_punctuality_desc": "We respect your time and stick to specified deadlines",
+    "advantage_response": "Quick response",
+    "advantage_response_desc": "We respond to your requests quickly and efficiently",
+    "advantage_comprehensive": "Comprehensive services",
+    "advantage_comprehensive_desc": "Integrated solutions for operation, maintenance, and cleaning",
+    "location_map": "Our Location on the Map",
     "achievements": {
       "clients": "More than 500 satisfied clients",
       "projects": "More than 1000 successfully completed projects",
@@ -201,6 +231,32 @@
       "text": "Competitive prices and excellent service, highly recommended"
     }
   },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most common questions about our services",
+    "questions": [
+      {
+        "question": "What areas do you provide your services in?",
+        "answer": "We provide our services throughout Saudi Arabia, with a special focus on the Eastern Province including Dammam, Khobar, and Dhahran."
+      },
+      {
+        "question": "Do you offer periodic maintenance contracts?",
+        "answer": "Yes, we offer monthly and annual periodic maintenance contracts for commercial and residential facilities at competitive prices with comprehensive services."
+      },
+      {
+        "question": "How long does it take to respond to requests?",
+        "answer": "We respond to all requests within 24 hours maximum, and in emergency cases, we provide a quick response service within hours."
+      },
+      {
+        "question": "Do you use safe cleaning materials?",
+        "answer": "Yes, we use eco-friendly and health-safe cleaning materials, approved by official authorities and compliant with international standards."
+      },
+      {
+        "question": "How can I get a price quote?",
+        "answer": "You can contact us via phone, WhatsApp, or contact form, and we will visit you to assess the required service and provide a detailed price quote."
+      }
+    ]
+  },
   "cta": {
     "title": "Are You Ready to Start with Us?",
     "description": "Contact us today and get a free consultation for our distinguished services",
@@ -233,7 +289,10 @@
     "follow_us": "Follow Us",
     "copyright": "All rights reserved.",
     "privacy_policy": "Privacy Policy",
-    "terms": "Terms & Conditions"
+    "terms": "Terms & Conditions",
+    "visitor_count": "Client Count",
+    "client_count": "Clients",
+    "sitemap": "Sitemap"
   },
   "common": {
     "read_more": "Read More",

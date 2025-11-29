@@ -213,13 +213,13 @@ export default function Contact() {
 
                 {submitStatus === 'success' && (
                   <div className="bg-green-50 dark:bg-green-900/30 border border-green-400 text-green-700 dark:text-green-300 px-5 py-4 rounded-xl mb-6">
-                    تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
+                    {t.contact.success_message}
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
                   <div className="bg-red-50 dark:bg-red-900/30 border border-red-400 text-red-700 dark:text-red-300 px-5 py-4 rounded-xl mb-6">
-                    حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.
+                    {t.contact.error_message}
                   </div>
                 )}
 
@@ -402,7 +402,7 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-center mb-12">موقعنا</h2>
+            <h2 className="section-title text-center mb-12">{t.contact.location_title}</h2>
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               {/* Google Maps Embed - Replace with your actual location */}
               <iframe
@@ -413,7 +413,7 @@ export default function Contact() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="موقعنا على الخريطة"
+                title={t.about.location_map}
               ></iframe>
             </div>
           </motion.div>

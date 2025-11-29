@@ -26,7 +26,7 @@ const WhatsAppButton = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.a
-          href={`https://wa.me/966557221833?text=${encodeURIComponent(t.contact.whatsapp_message || 'مرحباً، أود الاستفسار عن خدماتكم')}`}
+          href="https://wa.me/966557221833"
           target="_blank"
           rel="noopener noreferrer"
           initial={{ scale: 0, opacity: 0 }}
@@ -34,7 +34,7 @@ const WhatsAppButton = () => {
           exit={{ scale: 0, opacity: 0 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="fixed bottom-8 left-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center group"
+          className="fixed bottom-6 left-4 md:left-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center group"
           style={{ width: '60px', height: '60px' }}
         >
           <FaWhatsapp size={30} />
@@ -43,7 +43,7 @@ const WhatsAppButton = () => {
             whileHover={{ width: 'auto', opacity: 1 }}
             className="absolute right-full mr-3 bg-green-500 px-4 py-2 rounded-lg whitespace-nowrap overflow-hidden"
           >
-            {t.nav.contact_us_text || 'تواصل معنا'}
+            {t.nav.contact_us_text}
           </motion.span>
         </motion.a>
       )}

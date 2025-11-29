@@ -1,25 +1,48 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 import { useI18n } from '@/contexts/I18nContext'
+import { useState, useEffect } from 'react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
   const { t } = useI18n()
+  const [visitorCount, setVisitorCount] = useState<number>(3000)
+
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        const response = await fetch('/api/counter', {
+          method: 'GET',
+          cache: 'no-store',
+        })
+        if (response.ok) {
+          const data = await response.json()
+          setVisitorCount(data.count || 3000)
+        }
+      } catch (error) {
+        console.error('Error fetching counter:', error)
+      }
+    }
+    fetchCount()
+  }, [])
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-gray-950 dark:from-gray-950 dark:to-black text-white">
       {/* Main Footer */}
       <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 max-w-7xl mx-auto">
           {/* Company Info & Links */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <img
+              <Image
                 src="/imgs/logo.jpg"
                 alt={t.footer.company_name}
-                className="h-14 w-auto rounded-lg shadow-lg"
+                width={56}
+                height={56}
+                className="rounded-lg shadow-lg"
               />
             </div>
             <h3 className="text-2xl font-bold">{t.footer.company_name}</h3>
@@ -161,6 +184,19 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+
+            {/* Visitor Counter */}
+            <div className="mt-6 pt-6 border-t border-gray-800">
+              <div className="text-center">
+                <p className="text-gray-400 text-sm mb-2">{t.footer.visitor_count}</p>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-3xl font-bold text-primary-400">
+                    {visitorCount.toLocaleString('en-US')}
+                  </span>
+                  <span className="text-gray-300 text-lg">{t.footer.client_count}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -180,7 +216,7 @@ const Footer = () => {
                 {t.footer.terms}
               </Link>
               <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors">
-                خريطة الموقع
+                {t.footer.sitemap}
               </a>
             </div>
           </div>

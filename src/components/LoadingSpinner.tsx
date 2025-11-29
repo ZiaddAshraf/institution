@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function LoadingSpinner() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white" dir="rtl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900" dir="rtl">
       <div className="relative flex flex-col items-center justify-center">
         {/* Animated Bubbles */}
         <div className="absolute inset-0 flex items-center justify-center">

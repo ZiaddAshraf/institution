@@ -7,7 +7,7 @@ export default function StructuredData() {
     image: 'https://goodwill-foundation.com/imgs/logo.jpg',
     '@id': 'https://goodwill-foundation.com',
     url: 'https://goodwill-foundation.com',
-    telephone: '+966XXXXXXXXX',
+    telephone: '+966557221833',
     email: 'Goodwill.laundries@gmail.com',
     address: {
       '@type': 'PostalAddress',

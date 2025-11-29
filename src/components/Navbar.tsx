@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { FaBars, FaTimes, FaPhone, FaWhatsapp, FaStore } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -85,11 +86,17 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex justify-between items-center gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-            <img
+          <Link 
+            href="/" 
+            className="flex items-center gap-3 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg"
+            aria-label="Go to homepage"
+          >
+            <Image
               src="/imgs/logo.jpg"
               alt={t.footer.company_name}
-              className="h-12 w-auto rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              width={40}
+              height={40}
+              className="rounded-lg shadow-md hover:shadow-lg transition-shadow"
             />
             <div className={`hidden md:block transition-colors ${isScrolled ? 'text-gray-800 dark:text-gray-100' : 'text-white'}`}>
               <h1 className="text-lg font-bold leading-tight">{t.hero.title}</h1>
@@ -104,9 +111,10 @@ const Navbar = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`font-semibold px-4 py-2 rounded-lg transition-all hover:bg-primary-500/10 relative group ${
+                  className={`font-semibold px-4 py-2 rounded-lg transition-all hover:bg-primary-500/10 relative group focus:outline-none focus:ring-2 focus:ring-primary-500 ${
                     isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'
                   }`}
+                  aria-label={`Navigate to ${link.label}`}
                 >
                   {link.label}
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-3/4"></span>
@@ -139,7 +147,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2.5 rounded-lg transition-colors hover:bg-primary-500/10 ${
+            className={`lg:hidden p-2.5 rounded-lg ml-2 transition-colors hover:bg-primary-500/10 ${
               isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'
             }`}
             aria-label="Toggle menu"

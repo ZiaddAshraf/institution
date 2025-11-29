@@ -53,27 +53,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html>
       <head>
         <link rel="icon" href="/imgs/logo.jpg" type="image/jpeg" />
         <link rel="apple-touch-icon" href="/imgs/logo.jpg" />
         <meta name="theme-color" content="#00a6a6" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const savedTheme = localStorage.getItem('theme');
-                  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-                  if (theme === 'dark') {
-                    document.documentElement.classList.add('dark');
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
         <StructuredData />
       </head>
       <body className="antialiased">
