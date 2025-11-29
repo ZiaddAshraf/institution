@@ -30,8 +30,8 @@ async function getCounterData(): Promise<CounterData> {
   try {
     // Try KV first (production)
     if (kv) {
-      const count = await kv.get<number>('counter') || 0;
-      const lastIncrement = await kv.get<string>('counter_last_increment') || new Date().toISOString();
+      const count = (await kv.get('counter') as number) || 0;
+      const lastIncrement = (await kv.get('counter_last_increment') as string) || new Date().toISOString();
       return { count, lastIncrement };
     }
     
