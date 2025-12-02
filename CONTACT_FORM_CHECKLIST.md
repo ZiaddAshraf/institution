@@ -12,6 +12,7 @@
 ## For Vercel Deployment
 
 - [ ] Add EMAIL_PASSWORD to Vercel Environment Variables
+
   - [ ] Go to Project Settings
   - [ ] Go to Environment Variables
   - [ ] Add: EMAIL_PASSWORD = bdcxkhvhetngnaye
@@ -19,6 +20,7 @@
   - [ ] Click Save
 
 - [ ] Redeploy the project
+
   - [ ] Go to Deployments
   - [ ] Click on latest deployment
   - [ ] Click Redeploy

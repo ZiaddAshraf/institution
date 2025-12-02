@@ -1,14 +1,17 @@
 # حل مشكلة نموذج الاتصال 📧
 
 ## المشكلة
+
 النموذج يعمل على localhost لكن لا يعمل على Vercel/Production
 
 ## السبب
+
 متغير البيئة `EMAIL_PASSWORD` غير مضاف في Vercel
 
 ## الحل السريع ⚡
 
 ### 1. افتح Vercel Dashboard
+
 ```
 https://vercel.com/dashboard
 ```
@@ -16,6 +19,7 @@ https://vercel.com/dashboard
 ### 2. اختر مشروعك → Settings → Environment Variables
 
 ### 3. أضف:
+
 ```
 Name: EMAIL_PASSWORD
 Value: bdcxkhvhetngnaye
@@ -23,6 +27,7 @@ Environments: Production ✅ Preview ✅ Development ✅
 ```
 
 ### 4. احفظ وأعد النشر
+
 ```bash
 # من Dashboard
 Deployments → Latest → Redeploy
@@ -33,6 +38,7 @@ git push
 ```
 
 ### 5. اختبر النموذج
+
 اذهب إلى موقعك واملأ نموذج الاتصال
 
 ---
@@ -40,12 +46,14 @@ git push
 ## التحقق من النجاح ✅
 
 ### في Vercel Logs يجب أن ترى:
+
 ```
 ✅ Email sent successfully to Goodwill.laundries@gmail.com
 📧 From: اسم المستخدم <email@example.com>
 ```
 
 ### في الموقع:
+
 - رسالة نجاح تظهر بالعربية
 - البريد يصل إلى `Goodwill.laundries@gmail.com`
 
@@ -62,6 +70,7 @@ git push
 ## هل تحتاج مساعدة؟ 🆘
 
 إذا استمرت المشكلة:
+
 1. افتح F12 في المتصفح
 2. اذهب إلى Network
 3. أرسل رسالة

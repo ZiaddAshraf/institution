@@ -3,6 +3,7 @@
 ## ⚠️ المشكلة
 
 عندما تنشر الموقع على **Vercel** أو أي خادم، نموذج الاتصال يعطي خطأ:
+
 ```
 حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.
 ```
@@ -12,9 +13,11 @@
 ## ✅ الحل في 3 خطوات
 
 ### الخطوة 1: افتح Vercel
+
 اذهب إلى: **https://vercel.com/dashboard**
 
 ### الخطوة 2: أضف متغير البيئة
+
 ```
 Project → Settings → Environment Variables
 
@@ -26,6 +29,7 @@ Value: bdcxkhvhetngnaye
 **✅ تأكد من اختيار:** Production ✅ Preview ✅ Development
 
 ### الخطوة 3: أعد النشر
+
 ```
 Deployments → آخر نشر → Redeploy
 ```
