@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: NextRequest) {
   try {
     // Parse request body
@@ -45,8 +43,11 @@ export async function POST(request: NextRequest) {
 
     const fromEmail = process.env.FROM_EMAIL || 'Website Notifications <onboarding@resend.dev>';
 
+    // Initialize Resend client
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     // Send email using Resend
-    const data = await resend.emails.send({
+    const { data, error: resendError } = await resend.emails.send({
       from: fromEmail,
       to: process.env.TO_EMAIL,
       subject: `New Contact Form Submission from ${name}`,
@@ -150,11 +151,22 @@ This email was sent from your website contact form
       `,
     });
 
+    if (resendError) {
+      console.error('Resend API error:', resendError);
+      return NextResponse.json(
+        { 
+          error: 'Failed to send email', 
+          details: resendError.message || 'Unknown error' 
+        },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
       { 
         success: true, 
         message: 'Email sent successfully',
-        id: data.id 
+        id: data?.id 
       },
       { status: 200 }
     );
