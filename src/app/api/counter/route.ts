@@ -4,7 +4,8 @@ import path from 'path'
 
 const COOKIE_NAME = 'gw_visited';
 const COUNTER_FILE = path.join(process.cwd(), 'data', 'counter.json');
-const HOURS_24_IN_MS = 24 * 60 * 60 * 1000;
+const HOURS_48_IN_MS = 48 * 60 * 60 * 1000;
+const INITIAL_COUNT = 3000;
 
 interface CounterData {
   count: number;
@@ -30,9 +31,18 @@ async function getCounterData(): Promise<CounterData> {
   try {
     // Try KV first (production)
     if (kv) {
-      const count = (await kv.get('counter') as number) || 0;
-      const lastIncrement = (await kv.get('counter_last_increment') as string) || new Date().toISOString();
-      return { count, lastIncrement };
+      let count = (await kv.get('counter') as number);
+      let lastIncrement = (await kv.get('counter_last_increment') as string);
+      
+      // Initialize KV if it doesn't exist
+      if (count === null || count === undefined) {
+        count = INITIAL_COUNT;
+        lastIncrement = new Date().toISOString();
+        await kv.set('counter', count);
+        await kv.set('counter_last_increment', lastIncrement);
+      }
+      
+      return { count, lastIncrement: lastIncrement || new Date().toISOString() };
     }
     
     // Fallback to file storage (local development)
@@ -41,19 +51,19 @@ async function getCounterData(): Promise<CounterData> {
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
       }
-      const initialData = { count: 0, lastIncrement: new Date().toISOString() };
+      const initialData = { count: INITIAL_COUNT, lastIncrement: new Date().toISOString() };
       fs.writeFileSync(COUNTER_FILE, JSON.stringify(initialData));
       return initialData;
     }
     const data = fs.readFileSync(COUNTER_FILE, 'utf-8');
     const parsed = JSON.parse(data);
     return {
-      count: parsed.count || 0,
+      count: parsed.count !== undefined ? parsed.count : INITIAL_COUNT,
       lastIncrement: parsed.lastIncrement || new Date().toISOString()
     };
   } catch (error) {
     console.error('Error reading counter:', error);
-    return { count: 0, lastIncrement: new Date().toISOString() };
+    return { count: INITIAL_COUNT, lastIncrement: new Date().toISOString() };
   }
 }
 
@@ -64,8 +74,8 @@ async function checkAndAutoIncrement(): Promise<CounterData> {
     const currentTime = Date.now();
     const timeDiff = currentTime - lastIncrementTime;
 
-    // Calculate how many 24-hour periods have passed
-    const periodsElapsed = Math.floor(timeDiff / HOURS_24_IN_MS);
+    // Calculate how many 48-hour periods have passed
+    const periodsElapsed = Math.floor(timeDiff / HOURS_48_IN_MS);
 
     if (periodsElapsed > 0) {
       // Auto-increment for each 24-hour period that passed
@@ -83,7 +93,7 @@ async function checkAndAutoIncrement(): Promise<CounterData> {
         fs.writeFileSync(COUNTER_FILE, JSON.stringify(newData));
       }
       
-      console.log(`Auto-incremented counter by ${periodsElapsed}. New count: ${newCount}`);
+      console.log(`Auto-incremented counter by ${periodsElapsed} (48-hour periods). New count: ${newCount}`);
       return newData;
     }
 

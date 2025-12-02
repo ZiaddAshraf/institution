@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import { FaBars, FaTimes, FaPhone, FaWhatsapp, FaStore } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useI18n } from '@/contexts/I18nContext'
@@ -13,7 +14,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
   const { t } = useI18n()
+
+  // Check if we're on a page with light background (like 404)
+  const hasLightBackground = !pathname || pathname === '/' || false
 
   useEffect(() => {
     let ticking = false;
@@ -78,7 +83,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 will-change-transform ${
-        isScrolled
+        isScrolled || !hasLightBackground
           ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg py-3 border-b border-gray-200/50 dark:border-gray-700/50'
           : 'bg-transparent py-3'
       }`}
@@ -98,7 +103,7 @@ const Navbar = () => {
               height={40}
               className="rounded-lg shadow-md hover:shadow-lg transition-shadow"
             />
-            <div className={`hidden md:block transition-colors ${isScrolled ? 'text-gray-800 dark:text-gray-100' : 'text-white'}`}>
+            <div className={`hidden md:block transition-colors ${(isScrolled || !hasLightBackground) ? 'text-gray-800 dark:text-gray-100' : 'text-white'}`}>
               <h1 className="text-lg font-bold leading-tight">{t.hero.title}</h1>
               <p className="text-xs opacity-90">{t.hero.subtitle}</p>
             </div>
@@ -112,7 +117,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   className={`font-semibold px-4 py-2 rounded-lg transition-all hover:bg-primary-500/10 relative group focus:outline-none ${
-                    isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'
+                    (isScrolled || !hasLightBackground) ? 'text-gray-700 dark:text-gray-200' : 'text-white'
                   }`}
                   aria-label={`Navigate to ${link.label}`}
                 >
@@ -148,7 +153,7 @@ const Navbar = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`lg:hidden p-2.5 rounded-lg ml-2 transition-colors hover:bg-primary-500/10 ${
-              isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'
+              (isScrolled || !hasLightBackground) ? 'text-gray-700 dark:text-gray-200' : 'text-white'
             }`}
             aria-label="Toggle menu"
           >

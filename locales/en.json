@@ -362,5 +362,11 @@
     "cleaning": "Cleaning Services",
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions"
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Sorry, Page Not Found",
+    "description": "The page you are looking for might have been moved, deleted, or perhaps never existed",
+    "back_home": "Back to Home"
   }
 }
