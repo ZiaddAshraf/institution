@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 const COOKIE_NAME = 'gw_visited';
 const COUNTER_FILE = path.join(process.cwd(), 'data', 'counter.json');
 const HOURS_48_IN_MS = 48 * 60 * 60 * 1000;
@@ -16,14 +20,24 @@ interface CounterData {
 let kv: any = null;
 const isProduction = process.env.NODE_ENV === 'production';
 
+// Check if Vercel KV environment variables are configured
+const hasKVConfig = !!(
+  process.env.KV_REST_API_URL && 
+  process.env.KV_REST_API_TOKEN
+);
+
 async function initKV() {
-  if (isProduction && !kv) {
+  if (isProduction && hasKVConfig && !kv) {
     try {
       const kvModule = await import('@vercel/kv');
       kv = kvModule.kv;
+      console.log('✅ Using Vercel KV for counter storage');
     } catch (error) {
-      console.log('KV not available, using file storage');
+      console.log('⚠️ KV not available, using file storage');
     }
+  } else if (isProduction && !hasKVConfig) {
+    console.log('⚠️ Vercel KV not configured, using file storage');
+    console.log('📌 Add KV_REST_API_URL and KV_REST_API_TOKEN to use KV storage');
   }
 }
 

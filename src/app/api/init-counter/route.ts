@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 // This endpoint initializes the counter to 3000
 // Visit: /api/init-counter?secret=YOUR_SECRET to set it up
 export async function GET(request: NextRequest) {
@@ -11,6 +15,17 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
+      )
+    }
+
+    // Check if KV is configured
+    if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+      return NextResponse.json(
+        { 
+          error: 'Vercel KV not configured',
+          message: 'Add KV_REST_API_URL and KV_REST_API_TOKEN environment variables'
+        },
+        { status: 500 }
       )
     }
 
