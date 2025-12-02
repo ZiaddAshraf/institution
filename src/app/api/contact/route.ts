@@ -26,9 +26,13 @@ export async function POST(request: NextRequest) {
 
     // Check if email password is configured
     if (!process.env.EMAIL_PASSWORD) {
-      console.error('EMAIL_PASSWORD environment variable is not set');
+      console.error('❌ EMAIL_PASSWORD environment variable is not set');
+      console.error('📌 Add EMAIL_PASSWORD to your environment variables');
       return NextResponse.json(
-        { error: 'Email service is not configured' },
+        { 
+          error: 'Email service is not configured. Please contact the administrator.',
+          details: 'Missing EMAIL_PASSWORD environment variable'
+        },
         { status: 500 }
       );
     }
@@ -137,7 +141,8 @@ export async function POST(request: NextRequest) {
     // Send email
     await transporter.sendMail(mailOptions);
 
-    console.log('Email sent successfully to Goodwill.laundries@gmail.com');
+    console.log('✅ Email sent successfully to Goodwill.laundries@gmail.com');
+    console.log(`📧 From: ${name} <${email}>`);
 
     return NextResponse.json(
       { 
@@ -148,7 +153,7 @@ export async function POST(request: NextRequest) {
     );
 
   } catch (error: any) {
-    console.error('Error sending email:', error);
+    console.error('❌ Error sending email:', error);
     
     // Log more details about the error
     if (error instanceof Error) {
@@ -156,10 +161,22 @@ export async function POST(request: NextRequest) {
       console.error('Error stack:', error.stack);
     }
     
+    // Provide more specific error messages
+    let errorMessage = 'Failed to send email';
+    let errorDetails = error?.message || 'Unknown error';
+    
+    if (error?.code === 'EAUTH') {
+      errorMessage = 'Email authentication failed';
+      errorDetails = 'Invalid email credentials. Check EMAIL_PASSWORD.';
+    } else if (error?.code === 'ECONNECTION') {
+      errorMessage = 'Connection to email server failed';
+      errorDetails = 'Unable to connect to Gmail SMTP server.';
+    }
+    
     return NextResponse.json(
       { 
-        error: 'Failed to send email', 
-        details: error?.message || 'Unknown error' 
+        error: errorMessage, 
+        details: errorDetails 
       },
       { status: 500 }
     );
