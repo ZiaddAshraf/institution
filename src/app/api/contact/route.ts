@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,155 +24,137 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check environment variables
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
+    // Check if email password is configured
+    if (!process.env.EMAIL_PASSWORD) {
+      console.error('EMAIL_PASSWORD environment variable is not set');
       return NextResponse.json(
-        { error: 'Email service not configured' },
+        { error: 'Email service is not configured' },
         { status: 500 }
       );
     }
 
-    if (!process.env.TO_EMAIL) {
-      console.error('TO_EMAIL is not configured');
-      return NextResponse.json(
-        { error: 'Recipient email not configured' },
-        { status: 500 }
-      );
-    }
-
-    const fromEmail = process.env.FROM_EMAIL || 'Website Notifications <onboarding@resend.dev>';
-
-    // Initialize Resend client
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    // Send email using Resend
-    const { data, error: resendError } = await resend.emails.send({
-      from: fromEmail,
-      to: process.env.TO_EMAIL,
-      subject: `New Contact Form Submission from ${name}`,
-      html: `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8">
-            <style>
-              body {
-                font-family: Arial, sans-serif;
-                line-height: 1.6;
-                color: #333;
-              }
-              .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-                background-color: #f9f9f9;
-                border-radius: 8px;
-              }
-              .header {
-                background-color: #4F46E5;
-                color: white;
-                padding: 20px;
-                border-radius: 8px 8px 0 0;
-                text-align: center;
-              }
-              .content {
-                background-color: white;
-                padding: 30px;
-                border-radius: 0 0 8px 8px;
-              }
-              .field {
-                margin-bottom: 20px;
-              }
-              .field-label {
-                font-weight: bold;
-                color: #4F46E5;
-                margin-bottom: 5px;
-              }
-              .field-value {
-                padding: 10px;
-                background-color: #f3f4f6;
-                border-radius: 4px;
-                border-left: 3px solid #4F46E5;
-              }
-              .message-box {
-                white-space: pre-wrap;
-                word-wrap: break-word;
-              }
-              .footer {
-                margin-top: 20px;
-                padding-top: 20px;
-                border-top: 1px solid #e5e7eb;
-                font-size: 12px;
-                color: #6b7280;
-                text-align: center;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="header">
-                <h2 style="margin: 0;">New Contact Form Submission</h2>
-              </div>
-              <div class="content">
-                <div class="field">
-                  <div class="field-label">Name:</div>
-                  <div class="field-value">${name}</div>
-                </div>
-                <div class="field">
-                  <div class="field-label">Email:</div>
-                  <div class="field-value">
-                    <a href="mailto:${email}" style="color: #4F46E5; text-decoration: none;">${email}</a>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="field-label">Message:</div>
-                  <div class="field-value message-box">${message}</div>
-                </div>
-                <div class="footer">
-                  This email was sent from your website contact form
-                </div>
-              </div>
-            </div>
-          </body>
-        </html>
-      `,
-      text: `
-New Contact Form Submission
-
-Name: ${name}
-Email: ${email}
-
-Message:
-${message}
-
----
-This email was sent from your website contact form
-      `,
+    // Create a transporter using Gmail
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'ziaddd155@gmail.com',
+        pass: process.env.EMAIL_PASSWORD,
+      },
     });
 
-    if (resendError) {
-      console.error('Resend API error:', resendError);
-      return NextResponse.json(
-        { 
-          error: 'Failed to send email', 
-          details: resendError.message || 'Unknown error' 
-        },
-        { status: 500 }
-      );
-    }
+    // Email content in Arabic
+    const mailOptions = {
+      from: 'ziaddd155@gmail.com',
+      to: 'Goodwill.laundries@gmail.com',
+      subject: `رسالة جديدة من موقع طريق الخير - ${name}`,
+      html: `
+        <!DOCTYPE html>
+        <html dir="rtl" lang="ar">
+        <head>
+          <meta charset="UTF-8">
+          <style>
+            body {
+              font-family: 'Arial', sans-serif;
+              direction: rtl;
+              background-color: #f5f5f5;
+              margin: 0;
+              padding: 20px;
+            }
+            .container {
+              max-width: 600px;
+              margin: 0 auto;
+              background-color: white;
+              border-radius: 10px;
+              overflow: hidden;
+              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            .header {
+              background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+              color: white;
+              padding: 30px;
+              text-align: center;
+            }
+            .content {
+              padding: 30px;
+            }
+            .field {
+              margin-bottom: 20px;
+              padding-bottom: 15px;
+              border-bottom: 1px solid #e5e7eb;
+            }
+            .field:last-child {
+              border-bottom: none;
+            }
+            .label {
+              font-weight: bold;
+              color: #374151;
+              margin-bottom: 5px;
+              display: block;
+            }
+            .value {
+              color: #6b7280;
+              line-height: 1.6;
+            }
+            .footer {
+              background-color: #f9fafb;
+              padding: 20px;
+              text-align: center;
+              color: #6b7280;
+              font-size: 14px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1 style="margin: 0;">رسالة جديدة من موقع طريق الخير</h1>
+            </div>
+            <div class="content">
+              <div class="field">
+                <span class="label">الاسم:</span>
+                <span class="value">${name}</span>
+              </div>
+              <div class="field">
+                <span class="label">البريد الإلكتروني:</span>
+                <span class="value">${email}</span>
+              </div>
+              <div class="field">
+                <span class="label">الرسالة:</span>
+                <div class="value" style="white-space: pre-wrap;">${message}</div>
+              </div>
+            </div>
+            <div class="footer">
+              <p style="margin: 0;">تم الإرسال من موقع مؤسسة طريق الخير للتشغيل والصيانة</p>
+              <p style="margin: 5px 0 0 0;">📧 ${new Date().toLocaleString('ar-EG', { timeZone: 'Asia/Riyadh' })}</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `,
+      replyTo: email, // Allow direct reply to the sender
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    console.log('Email sent successfully to Goodwill.laundries@gmail.com');
 
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Email sent successfully',
-        id: data?.id 
+        message: 'Email sent successfully'
       },
       { status: 200 }
     );
 
   } catch (error: any) {
     console.error('Error sending email:', error);
+    
+    // Log more details about the error
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
     
     return NextResponse.json(
       { 
@@ -182,12 +164,4 @@ This email was sent from your website contact form
       { status: 500 }
     );
   }
-}
-
-// Handle other HTTP methods
-export async function GET() {
-  return NextResponse.json(
-    { error: 'Method not allowed' },
-    { status: 405 }
-  );
 }

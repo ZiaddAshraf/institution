@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { useI18n } from '@/contexts/I18nContext';
 
 interface FormData {
   name: string;
@@ -14,6 +15,8 @@ interface FormStatus {
 }
 
 export default function ContactForm() {
+  const { t, locale } = useI18n();
+  
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -43,29 +46,44 @@ export default function ContactForm() {
 
   const validateForm = (): boolean => {
     if (!formData.name.trim()) {
-      setStatus({ type: 'error', message: 'Please enter your name' });
+      setStatus({ 
+        type: 'error', 
+        message: locale === 'ar' ? 'الرجاء إدخال الاسم' : 'Please enter your name' 
+      });
       return false;
     }
 
     if (!formData.email.trim()) {
-      setStatus({ type: 'error', message: 'Please enter your email' });
+      setStatus({ 
+        type: 'error', 
+        message: locale === 'ar' ? 'الرجاء إدخال البريد الإلكتروني' : 'Please enter your email' 
+      });
       return false;
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setStatus({ type: 'error', message: 'Please enter a valid email address' });
+      setStatus({ 
+        type: 'error', 
+        message: locale === 'ar' ? 'الرجاء إدخال بريد إلكتروني صحيح' : 'Please enter a valid email address' 
+      });
       return false;
     }
 
     if (!formData.message.trim()) {
-      setStatus({ type: 'error', message: 'Please enter your message' });
+      setStatus({ 
+        type: 'error', 
+        message: locale === 'ar' ? 'الرجاء إدخال رسالتك' : 'Please enter your message' 
+      });
       return false;
     }
 
     if (formData.message.trim().length < 10) {
-      setStatus({ type: 'error', message: 'Message must be at least 10 characters' });
+      setStatus({ 
+        type: 'error', 
+        message: locale === 'ar' ? 'يجب أن تكون الرسالة 10 أحرف على الأقل' : 'Message must be at least 10 characters' 
+      });
       return false;
     }
 
@@ -97,7 +115,7 @@ export default function ContactForm() {
       if (response.ok) {
         setStatus({
           type: 'success',
-          message: 'Thank you! Your message has been sent successfully.',
+          message: t.contact.success_message,
         });
         // Reset form
         setFormData({
@@ -108,14 +126,16 @@ export default function ContactForm() {
       } else {
         setStatus({
           type: 'error',
-          message: data.error || 'Failed to send message. Please try again.',
+          message: data.error || t.contact.error_message,
         });
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setStatus({
         type: 'error',
-        message: 'Network error. Please check your connection and try again.',
+        message: locale === 'ar' 
+          ? 'خطأ في الاتصال. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.' 
+          : 'Network error. Please check your connection and try again.',
       });
     } finally {
       setIsSubmitting(false);
@@ -131,7 +151,7 @@ export default function ContactForm() {
             htmlFor="name"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
-            Name
+            {t.contact.name_label}
           </label>
           <input
             type="text"
@@ -146,7 +166,7 @@ export default function ContactForm() {
                      focus:ring-2 focus:ring-indigo-500 focus:border-transparent
                      disabled:opacity-50 disabled:cursor-not-allowed
                      transition-colors duration-200"
-            placeholder="Your name"
+            placeholder={t.contact.name_placeholder}
           />
         </div>
 
@@ -156,7 +176,7 @@ export default function ContactForm() {
             htmlFor="email"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
-            Email
+            {t.contact.email_label}
           </label>
           <input
             type="email"
@@ -171,7 +191,7 @@ export default function ContactForm() {
                      focus:ring-2 focus:ring-indigo-500 focus:border-transparent
                      disabled:opacity-50 disabled:cursor-not-allowed
                      transition-colors duration-200"
-            placeholder="your.email@example.com"
+            placeholder={t.contact.email_placeholder}
           />
         </div>
 
@@ -181,7 +201,7 @@ export default function ContactForm() {
             htmlFor="message"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
-            Message
+            {t.contact.message_label}
           </label>
           <textarea
             id="message"
@@ -196,7 +216,7 @@ export default function ContactForm() {
                      focus:ring-2 focus:ring-indigo-500 focus:border-transparent
                      disabled:opacity-50 disabled:cursor-not-allowed
                      transition-colors duration-200 resize-none"
-            placeholder="Your message..."
+            placeholder={t.contact.message_placeholder}
           />
         </div>
 
@@ -278,10 +298,10 @@ export default function ContactForm() {
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 />
               </svg>
-              <span>Sending...</span>
+              <span>{locale === 'ar' ? 'جاري الإرسال...' : 'Sending...'}</span>
             </>
           ) : (
-            <span>Send Message</span>
+            <span>{t.contact.submit_button}</span>
           )}
         </button>
       </form>
