@@ -71,7 +71,7 @@ export default function About() {
       <section className="relative pt-32 pb-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
-            backgroundImage: 'url("/imgs/hero3.jpg")',
+            backgroundImage: 'url("/imgs/hero1.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}></div>
@@ -79,8 +79,8 @@ export default function About() {
         
         <motion.div
           ref={headerRef}
-          initial="hidden"
-          animate={headerInView ? "visible" : "hidden"}
+          initial="visible"
+          animate="visible"
           variants={staggerContainer}
           className="container-custom relative z-10"
         >
@@ -98,7 +98,7 @@ export default function About() {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
@@ -140,7 +140,7 @@ export default function About() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
@@ -162,7 +162,7 @@ export default function About() {
 
           {/* Achievements */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -258,7 +258,7 @@ export default function About() {
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -271,7 +271,7 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -348,7 +348,7 @@ export default function About() {
       <section className="py-20 bg-gradient-to-r from-primary-700 to-secondary-700 text-white">
         <div className="container-custom text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 1, scale: 1 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -365,6 +365,33 @@ export default function About() {
           </motion.div>
         </div>
       </section>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          <div className="relative w-full h-full max-w-7xl max-h-[90vh]">
+            <Image
+              src={selectedImage}
+              alt="Preview"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </motion.div>
+      )}
     </>
   )
 }

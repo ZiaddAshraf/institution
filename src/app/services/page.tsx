@@ -107,7 +107,7 @@ export default function ServicesPage() {
   return (
     <div className={`min-h-screen ${isRTL ? 'rtl' : 'ltr'}`}>
       {/* Header Section */}
-      <section className="relative bg-gradient-to-br from-[#00A6A6] via-[#0E87A4] to-[#00A6A6] text-white py-20 px-4 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#00A6A6] via-[#0E87A4] to-[#00A6A6] text-white pt-32 pb-20 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>

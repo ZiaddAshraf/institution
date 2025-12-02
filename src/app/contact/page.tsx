@@ -152,8 +152,8 @@ export default function Contact() {
         
         <motion.div
           ref={headerRef}
-          initial="hidden"
-          animate={headerInView ? "visible" : "hidden"}
+          initial="visible"
+          animate="visible"
           variants={staggerContainer}
           className="container-custom relative z-10"
         >
@@ -176,7 +176,7 @@ export default function Contact() {
                 href={item.link}
                 target={item.link.startsWith('http') ? '_blank' : undefined}
                 rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -201,8 +201,8 @@ export default function Contact() {
             {/* Contact Form */}
             <motion.div
               ref={formRef}
-              initial="hidden"
-              animate={formInView ? "visible" : "hidden"}
+              initial="visible"
+              animate="visible"
               variants={staggerContainer}
               className="lg:col-span-2"
             >
@@ -321,7 +321,7 @@ export default function Contact() {
 
             {/* Additional Info */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
@@ -397,7 +397,7 @@ export default function Contact() {
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}

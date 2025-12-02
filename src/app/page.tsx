@@ -1,14 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useI18n } from '@/contexts/I18nContext'
 import { FaCog, FaBroom, FaTools, FaCheckCircle, FaHeadset, FaCertificate, FaAward } from 'react-icons/fa'
-import { useState, useEffect } from 'react'
 import StatsCounter from '@/components/StatsCounter'
-import LoadingSpinner from '@/components/LoadingSpinner'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -32,9 +31,7 @@ const scaleIn = {
 
 export default function Home() {
   const { t } = useI18n()
-  
-  // Loading state for initial page load
-  const [isLoading, setIsLoading] = useState(true)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [servicesRef, servicesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -67,20 +64,6 @@ export default function Home() {
     { number: '1000+', label: t.stats.completed_projects, icon: <FaCog size={32} /> },
     { number: '15+', label: t.stats.years_experience, icon: <FaAward size={32} /> }
   ]
-
-  useEffect(() => {
-    // Simulate initial loading (minimum 1.5s to show loading animation)
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1500)
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  // Show loading screen on initial render
-  if (isLoading) {
-    return <LoadingSpinner />
-  }
 
   return (
     <>
@@ -123,8 +106,8 @@ export default function Home() {
         {/* Hero Content */}
         <motion.div
           ref={heroRef}
-          initial="hidden"
-          animate={heroInView ? "visible" : "hidden"}
+          initial="visible"
+          animate="visible"
           variants={staggerContainer}
           className="container-custom relative z-10 text-white text-center py-20"
         >
@@ -188,8 +171,8 @@ export default function Home() {
         </div>
 
         <motion.div
-          initial="hidden"
-          animate={aboutInView ? "visible" : "hidden"}
+          initial="visible"
+          animate="visible"
           variants={staggerContainer}
           className="container-custom relative z-10"
         >
@@ -206,19 +189,20 @@ export default function Home() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4 }}
             >
-              <Link href="/about" className="block">
-                <div className="relative group cursor-pointer">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                  <div className="relative rounded-2xl shadow-2xl w-full h-[550px] lg:h-[650px] overflow-hidden">
-                    <Image
-                      src="/imgs/essintial.jpg"
-                      alt="About Us"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+              <div 
+                className="relative group cursor-pointer"
+                onClick={() => setSelectedImage('/imgs/essintial.jpg')}
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                <div className="relative rounded-2xl shadow-2xl w-full h-[550px] lg:h-[650px] overflow-hidden">
+                  <Image
+                    src="/imgs/essintial.jpg"
+                    alt="About Us"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-              </Link>
+              </div>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="space-y-6">
@@ -279,8 +263,8 @@ export default function Home() {
       {/* Services Section */}
       <section ref={servicesRef} className="py-24 bg-white dark:bg-gray-800">
         <motion.div
-          initial="hidden"
-          animate={servicesInView ? "visible" : "hidden"}
+          initial="visible"
+          animate="visible"
           variants={staggerContainer}
           className="container mx-auto max-w-7xl px-4"
         >
@@ -303,17 +287,18 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
                 className="group bg-white dark:bg-gray-700 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-200 dark:border-gray-600"
               >
-                <Link href="/services" className="block">
-                  <div className="relative h-96 overflow-hidden bg-white dark:bg-gray-800">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover md:object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                </Link>
+                <div 
+                  className="relative h-64 md:h-80 lg:h-96 overflow-hidden bg-white dark:bg-gray-800 cursor-pointer"
+                  onClick={() => setSelectedImage(service.image)}
+                >
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover md:object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
                 
                 <div className="p-10">
                   <div className="text-primary-500 mb-6 flex justify-start">
@@ -380,8 +365,8 @@ export default function Home() {
         </div>
 
         <motion.div
-          initial="hidden"
-          animate={statsInView ? "visible" : "hidden"}
+          initial="visible"
+          animate="visible"
           variants={staggerContainer}
           className="container-custom relative z-10"
         >
@@ -470,6 +455,33 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          <div className="relative w-full h-full max-w-7xl max-h-[90vh]">
+            <Image
+              src={selectedImage}
+              alt="Preview"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </motion.div>
+      )}
     </>
   )
 }

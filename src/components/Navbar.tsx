@@ -82,10 +82,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 will-change-transform ${
+      className={`fixed w-full z-50 top-0 left-0 right-0 transition-all duration-300 ${
         isScrolled || !hasLightBackground
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg py-3 border-b border-gray-200/50 dark:border-gray-700/50'
-          : 'bg-transparent py-3'
+          ? 'bg-white dark:bg-gray-900 shadow-md py-3'
+          : 'bg-gradient-to-b from-black/40 to-transparent py-4'
       }`}
     >
       <div className="container-custom">

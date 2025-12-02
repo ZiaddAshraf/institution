@@ -3,11 +3,13 @@
 ## المشكلة الرئيسية
 
 في ملف `next.config.js` كان:
+
 ```javascript
-output: 'export'  // ❌ Static export
+output: "export"; // ❌ Static export
 ```
 
 **المشكلة:**
+
 - Static export **لا يدعم API routes**
 - نموذج الاتصال يحتاج `/api/contact`
 - العداد يحتاج `/api/counter`
@@ -30,11 +32,13 @@ output: 'export'  // ❌ Static export
 ## الفرق
 
 ### قبل (Static Export):
+
 - ❌ لا يدعم API routes
 - ❌ كل شيء HTML ثابت
 - ✅ سريع جداً لكن محدود
 
 ### بعد (SSR on Vercel):
+
 - ✅ يدعم API routes
 - ✅ نموذج الاتصال يعمل
 - ✅ عداد الزوار يعمل
@@ -58,6 +62,7 @@ git push
 ## النتيجة ✅
 
 بعد Push:
+
 - ✅ Build سينجح
 - ✅ API routes تعمل
 - ✅ نموذج الاتصال يعمل

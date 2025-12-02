@@ -174,7 +174,7 @@ export default function LoadingSpinner() {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="text-lg font-medium text-gray-700"
+          className="text-lg font-medium text-gray-700 dark:text-white"
         >
           جاري التحميل…
         </motion.p>

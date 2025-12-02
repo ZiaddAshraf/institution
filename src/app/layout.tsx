@@ -55,6 +55,14 @@ export default function RootLayout({
   return (
     <html>
       <head>
+        {/* Preconnect to important domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://wa.me" />
+        
+        {/* Preload critical assets */}
+        <link rel="preload" href="/imgs/logo.jpg" as="image" type="image/jpeg" />
+        
         <link rel="icon" href="/imgs/logo.jpg" type="image/jpeg" />
         <link rel="apple-touch-icon" href="/imgs/logo.jpg" />
         <meta name="theme-color" content="#00a6a6" />
