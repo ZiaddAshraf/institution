@@ -88,7 +88,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center gap-3 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg"
+            className="flex items-center gap-3 flex-shrink-0 focus:outline-none rounded-lg"
             aria-label="Go to homepage"
           >
             <Image
@@ -111,7 +111,7 @@ const Navbar = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`font-semibold px-4 py-2 rounded-lg transition-all hover:bg-primary-500/10 relative group focus:outline-none focus:ring-2 focus:ring-primary-500 ${
+                  className={`font-semibold px-4 py-2 rounded-lg transition-all hover:bg-primary-500/10 relative group focus:outline-none ${
                     isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'
                   }`}
                   aria-label={`Navigate to ${link.label}`}

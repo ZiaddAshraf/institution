@@ -215,9 +215,9 @@ const Footer = () => {
               <Link href="/terms" className="hover:text-primary-400 transition-colors">
                 {t.footer.terms}
               </Link>
-              <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors">
+              <Link href="/sitemap-page" className="hover:text-primary-400 transition-colors">
                 {t.footer.sitemap}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
