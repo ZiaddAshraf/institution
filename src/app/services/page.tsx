@@ -140,29 +140,24 @@ export default function ServicesPage() {
             {featuredServices.map((service, index) => (
               <div
                 key={service.id}
-                className="group bg-white dark:bg-gray-800 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden animate-fade-in"
+                className="group bg-white dark:bg-gray-800 rounded-xl md:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden animate-fade-in flex flex-col"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                <div className="flex flex-col lg:grid lg:grid-cols-2 gap-0">
                   <div 
-                    className="relative h-[500px] lg:h-[600px] overflow-hidden cursor-pointer bg-gray-100 dark:bg-gray-700"
+                    className="relative w-full h-auto lg:h-[600px] overflow-hidden cursor-pointer bg-gray-100 dark:bg-gray-700 flex justify-center items-center p-4 lg:p-0"
                     onClick={() => setSelectedImage(service.image)}
                   >
                     <Image
                       src={service.image}
                       alt={isRTL ? service.title : service.titleEn}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      width={800}
+                      height={800}
+                      className="w-full h-auto object-contain lg:object-cover rounded-xl lg:rounded-none transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none"></div>
-                    <div className="absolute bottom-6 left-6 right-6 lg:hidden">
-                      <span className="text-5xl mb-2 inline-block">{service.icon}</span>
-                      <h3 className="text-2xl font-bold text-white drop-shadow-lg">
-                        {isRTL ? service.title : service.titleEn}
-                      </h3>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none hidden lg:block"></div>
                   </div>
-                  <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <div className="p-4 md:p-8 lg:p-12 flex flex-col justify-center gap-3 lg:gap-0">
                     <span className="text-6xl mb-4 inline-block hidden lg:block">{service.icon}</span>
                     <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6 hidden lg:block">
                       {isRTL ? service.title : service.titleEn}
@@ -204,14 +199,14 @@ export default function ServicesPage() {
                     {isRTL ? category.category : category.categoryEn}
                   </h2>
                 </div>
-                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                   {category.services.map((service, serviceIndex) => (
                     <div
                       key={serviceIndex}
-                      className="group bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer border border-gray-200 dark:border-gray-600"
+                      className="group bg-white dark:bg-gray-700 p-4 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer border border-gray-200 dark:border-gray-600 flex flex-col gap-3"
                     >
-                      <div className="text-4xl mb-4">{service.icon}</div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                      <div className="text-3xl md:text-4xl">{service.icon}</div>
+                      <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
                         {isRTL ? service.name : service.nameEn}
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">

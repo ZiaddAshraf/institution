@@ -169,7 +169,7 @@ export default function Contact() {
       {/* Contact Info Cards */}
       <section className="py-24 bg-white dark:bg-gray-800">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-20">
             {contactInfo.map((item, index) => (
               <motion.a
                 key={index}
@@ -181,15 +181,15 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="card p-6 text-center group cursor-pointer"
+                className="card p-4 md:p-6 text-center group cursor-pointer flex flex-col gap-3"
               >
-                <div className={`bg-gradient-to-br ${item.color} w-16 h-16 rounded-xl flex items-center justify-center text-white mx-auto mb-5 group-hover:scale-110 transition-transform shadow-lg`}>
+                <div className={`bg-gradient-to-br ${item.color} w-14 md:w-16 h-14 md:h-16 rounded-xl flex items-center justify-center text-white mx-auto group-hover:scale-110 transition-transform shadow-lg`}>
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
                   {item.title}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-200">
+                <p className="text-gray-700 dark:text-gray-200 text-sm md:text-base">
                   {item.info}
                 </p>
               </motion.a>

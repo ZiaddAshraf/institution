@@ -194,12 +194,13 @@ export default function Home() {
                 onClick={() => setSelectedImage('/imgs/essintial.jpg')}
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <div className="relative rounded-2xl shadow-2xl w-full h-[550px] lg:h-[650px] overflow-hidden">
+                <div className="relative rounded-2xl shadow-2xl w-full overflow-hidden flex justify-center items-center bg-white dark:bg-gray-900 p-4 md:p-0">
                   <Image
                     src="/imgs/essintial.jpg"
                     alt="About Us"
-                    fill
-                    className="object-cover"
+                    width={800}
+                    height={800}
+                    className="w-full h-auto object-contain md:object-cover rounded-xl md:rounded-none md:h-[550px] lg:md:h-[650px]"
                   />
                 </div>
               </div>
@@ -285,37 +286,38 @@ export default function Home() {
                 variants={fadeInUp}
                 whileHover={{ y: -10, scale: 1.03 }}
                 transition={{ duration: 0.3 }}
-                className="group bg-white dark:bg-gray-700 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-200 dark:border-gray-600"
+                className="group bg-white dark:bg-gray-700 rounded-xl md:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden cursor-pointer border border-gray-200 dark:border-gray-600 flex flex-col"
               >
                 <div 
-                  className="relative h-64 md:h-80 lg:h-96 overflow-hidden bg-white dark:bg-gray-800 cursor-pointer"
+                  className="relative w-full h-auto md:h-80 lg:h-96 overflow-hidden bg-white dark:bg-gray-800 cursor-pointer flex justify-center items-center p-4 md:p-0"
                   onClick={() => setSelectedImage(service.image)}
                 >
                   <Image
                     src={service.image}
                     alt={service.title}
-                    fill
-                    className="object-cover md:object-contain group-hover:scale-105 transition-transform duration-500"
+                    width={800}
+                    height={800}
+                    className="w-full h-auto object-contain md:object-cover rounded-xl md:rounded-none group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 
-                <div className="p-10">
-                  <div className="text-primary-500 mb-6 flex justify-start">
+                <div className="p-4 md:p-10 flex flex-col gap-3 md:gap-0">
+                  <div className="text-primary-500 mb-3 md:mb-6 flex justify-start">
                     {service.icon}
                   </div>
                   
-                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">
+                  <h3 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 md:mb-5">
                     {service.title}
                   </h3>
                   
-                  <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-7">
+                  <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed mb-4 md:mb-7">
                     {service.description}
                   </p>
 
                   <Link
                     href="/services"
-                    className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-bold text-lg transition-colors group-hover:gap-4"
+                    className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-bold text-base md:text-lg transition-colors group-hover:gap-4"
                   >
                     {t.common.learn_more}
                     <span className="transform group-hover:translate-x-2 transition-transform">←</span>

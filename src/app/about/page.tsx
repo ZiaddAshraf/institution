@@ -148,12 +148,13 @@ export default function About() {
               onClick={() => setSelectedImage('/imgs/essintial.jpg')}
             >
               <div className="card p-4 bg-gray-50 dark:bg-gray-700/50">
-                <div className="relative w-full h-[550px]">
+                <div className="relative w-full h-auto flex justify-center items-center bg-white dark:bg-gray-900">
                   <Image
                     src="/imgs/essintial.jpg"
                     alt="About Us"
-                    fill
-                    className="rounded-xl shadow-lg object-cover hover:shadow-2xl transition-shadow duration-300"
+                    width={800}
+                    height={800}
+                    className="rounded-xl shadow-lg object-contain md:object-cover w-full h-auto md:h-[550px] hover:shadow-2xl transition-shadow duration-300"
                   />
                 </div>
               </div>
@@ -191,23 +192,23 @@ export default function About() {
           variants={staggerContainer}
           className="container-custom"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div variants={fadeInUp} className="card p-10 h-full flex flex-col">
-              <div className="bg-gradient-to-r from-primary-500 to-primary-600 w-20 h-20 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
-                <FaEye size={38} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <motion.div variants={fadeInUp} className="card p-4 md:p-10 h-full flex flex-col gap-3 md:gap-0">
+              <div className="bg-gradient-to-r from-primary-500 to-primary-600 w-16 md:w-20 h-16 md:h-20 rounded-2xl flex items-center justify-center text-white mb-3 md:mb-6 shadow-lg">
+                <FaEye size={32} className="md:w-[38px] md:h-[38px]" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">{t.about.vision_title}</h3>
-              <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] flex-grow">
+              <h3 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 md:mb-5">{t.about.vision_title}</h3>
+              <p className="text-base md:text-lg text-gray-700 dark:text-gray-200 leading-[1.8] flex-grow">
                 {t.about.vision_text}
               </p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="card p-10 h-full flex flex-col">
-              <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-20 h-20 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg">
-                <FaBullseye size={38} />
+            <motion.div variants={fadeInUp} className="card p-4 md:p-10 h-full flex flex-col gap-3 md:gap-0">
+              <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 w-16 md:w-20 h-16 md:h-20 rounded-2xl flex items-center justify-center text-white mb-3 md:mb-6 shadow-lg">
+                <FaBullseye size={32} className="md:w-[38px] md:h-[38px]" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-5">{t.about.mission_title}</h3>
-              <p className="text-lg text-gray-700 dark:text-gray-200 leading-[1.8] flex-grow">
+              <h3 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 md:mb-5">{t.about.mission_title}</h3>
+              <p className="text-base md:text-lg text-gray-700 dark:text-gray-200 leading-[1.8] flex-grow">
                 {t.about.mission_text}
               </p>
             </motion.div>
@@ -230,22 +231,22 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {values.map((value, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="card p-8 text-center h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="card p-4 md:p-8 text-center h-full flex flex-col gap-3 shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="text-primary-500 mb-5 flex justify-center">
-                  <div className="w-20 h-20 rounded-2xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center">
+                <div className="text-primary-500 mb-2 md:mb-5 flex justify-center">
+                  <div className="w-16 md:w-20 h-16 md:h-20 rounded-2xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center">
                     {value.icon}
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white">
                   {value.title}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-200 leading-[1.7] flex-grow">
+                <p className="text-gray-700 dark:text-gray-200 text-sm md:text-base leading-[1.7] flex-grow">
                   {value.description}
                 </p>
               </motion.div>
@@ -275,65 +276,65 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto"
           >
-            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
-              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-3 flex-shrink-0">
-                <FaAward className="text-primary-600 dark:text-primary-400" size={28} />
+            <div className="card p-4 md:p-6 flex items-start space-x-3 md:space-x-4 space-x-reverse">
+              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-2 md:p-3 flex-shrink-0">
+                <FaAward className="text-primary-600 dark:text-primary-400" size={24} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_quality}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_quality_desc}</p>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_quality}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">{t.about.advantage_quality_desc}</p>
               </div>
             </div>
 
-            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
-              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-3 flex-shrink-0">
-                <FaUsers className="text-secondary-600 dark:text-secondary-400" size={28} />
+            <div className="card p-4 md:p-6 flex items-start space-x-3 md:space-x-4 space-x-reverse">
+              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-2 md:p-3 flex-shrink-0">
+                <FaUsers className="text-secondary-600 dark:text-secondary-400" size={24} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_team}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_team_desc}</p>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_team}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">{t.about.advantage_team_desc}</p>
               </div>
             </div>
 
-            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
-              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-3 flex-shrink-0">
-                <FaBullseye className="text-primary-600 dark:text-primary-400" size={28} />
+            <div className="card p-4 md:p-6 flex items-start space-x-3 md:space-x-4 space-x-reverse">
+              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-2 md:p-3 flex-shrink-0">
+                <FaBullseye className="text-primary-600 dark:text-primary-400" size={24} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_pricing}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_pricing_desc}</p>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_pricing}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">{t.about.advantage_pricing_desc}</p>
               </div>
             </div>
 
-            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
-              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-3 flex-shrink-0">
-                <FaCheckCircle className="text-secondary-600 dark:text-secondary-400" size={28} />
+            <div className="card p-4 md:p-6 flex items-start space-x-3 md:space-x-4 space-x-reverse">
+              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-2 md:p-3 flex-shrink-0">
+                <FaCheckCircle className="text-secondary-600 dark:text-secondary-400" size={24} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_punctuality}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_punctuality_desc}</p>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_punctuality}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">{t.about.advantage_punctuality_desc}</p>
               </div>
             </div>
 
-            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
-              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-3 flex-shrink-0">
-                <FaEye className="text-primary-600 dark:text-primary-400" size={28} />
+            <div className="card p-4 md:p-6 flex items-start space-x-3 md:space-x-4 space-x-reverse">
+              <div className="bg-primary-100 dark:bg-primary-900/30 rounded-xl p-2 md:p-3 flex-shrink-0">
+                <FaEye className="text-primary-600 dark:text-primary-400" size={24} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_response}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_response_desc}</p>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_response}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">{t.about.advantage_response_desc}</p>
               </div>
             </div>
 
-            <div className="card p-6 flex items-start space-x-4 space-x-reverse">
-              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-3 flex-shrink-0">
-                <FaAward className="text-secondary-600 dark:text-secondary-400" size={28} />
+            <div className="card p-4 md:p-6 flex items-start space-x-3 md:space-x-4 space-x-reverse">
+              <div className="bg-secondary-100 dark:bg-secondary-900/30 rounded-xl p-2 md:p-3 flex-shrink-0">
+                <FaAward className="text-secondary-600 dark:text-secondary-400" size={24} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_comprehensive}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{t.about.advantage_comprehensive_desc}</p>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-1">{t.about.advantage_comprehensive}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm">{t.about.advantage_comprehensive_desc}</p>
               </div>
             </div>
           </motion.div>
